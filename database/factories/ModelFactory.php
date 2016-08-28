@@ -49,3 +49,20 @@ $factory->define(App\Supplier::class, function (Faker\Generator $faker) {
         'address' => $faker->address,
     ];
 });
+
+$factory->define(App\Permission::class, function () {
+    $objects = ['product', 'customer'];
+    $actions = ['index', 'create', 'edit', 'destroy'];
+
+    return [
+        'object' => $objects[rand(0,1)],
+        'action' => $actions[rand(0,3)],
+    ];
+});
+
+$factory->define(App\Role::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'description' => $faker->text(140)
+    ];
+});

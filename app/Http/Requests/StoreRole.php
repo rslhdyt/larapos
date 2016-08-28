@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Supplier;
+use App\Role;
 
-class UpdateSupplier extends FormRequest
+class StoreRole extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,17 @@ class UpdateSupplier extends FormRequest
      */
     public function rules()
     {
-        $supplier_id = $this->segment(2);
+        $rules = Role::$rules;
+        $rules['permission_ids'] = 'required';
 
-        $rules = Supplier::$rules;
-        $rules['email'] = 'required|unique:customers,email,' . $supplier_id;
-
-        return $rules; 
+        return $rules;
     }
+
+    public function messages()
+    {
+        return [
+            'permission_ids.required' => 'The permissions field is required.'
+        ];
+    }
+
 }
