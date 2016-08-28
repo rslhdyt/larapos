@@ -25,8 +25,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('products', 'ProductController');
 
     Route::group(['prefix' => 'settings'], function(){
-        Route::get('/', 'RoleController@index');
+        // Route::get('/', 'RoleController@index');
         Route::resource('roles', 'RoleController');
+        Route::resource('permissions', 'PermissionController');
     });
 });
 
