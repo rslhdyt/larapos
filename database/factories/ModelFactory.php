@@ -49,3 +49,10 @@ $factory->define(App\Supplier::class, function (Faker\Generator $faker) {
         'address' => $faker->address,
     ];
 });
+
+$factory->define(App\Role::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'description' => $faker->text(140),
+    ];
+});
