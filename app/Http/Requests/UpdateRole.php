@@ -28,7 +28,15 @@ class UpdateRole extends FormRequest
 
         $rules = Role::$rules;
         $rules['name'] = 'required|unique:roles,name,' . $role_id;
+        $rules['permission_ids'] = 'required';
 
         return $rules; 
+    }
+
+    public function messages()
+    {
+        return [
+            'permission_ids.required' => 'The permissions field is required.'
+        ];
     }
 }

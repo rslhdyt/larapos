@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Role;
+use App\Permission;
 
 class RoleController extends Controller
 {
@@ -28,7 +29,11 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('settings.roles.create');
+        $data = [
+            'permissions' => Permission::grouped()
+        ];
+
+        return view('settings.roles.create', $data);
     }
 
     /**
@@ -42,6 +47,7 @@ class RoleController extends Controller
         $form = $request->all();
 
         $role = Role::create($form);
+        $role->permissions()->sync($form['permission_ids']);
 
         return redirect('settings/roles')
             ->with('message-success', 'Role created!');
@@ -70,7 +76,14 @@ class RoleController extends Controller
     {
         $role = Role::findOrFail($id);
 
-        return view('settings.roles.edit', compact('role'));
+        $data = [
+            'role' => $role,
+            'permissions' => Permission::grouped(),
+
+            'selected_permission_ids' => $role->permissions->pluck('id')->toArray()
+        ];
+
+        return view('settings.roles.edit', $data);
     }
 
     /**
@@ -86,6 +99,8 @@ class RoleController extends Controller
 
         $role = Role::findOrFail($id);
         $role->update($form);
+
+        $role->permissions()->sync($form['permission_ids']);
 
         return redirect('settings/roles')
             ->with('message-success', 'Role updated!');

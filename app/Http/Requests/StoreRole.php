@@ -24,6 +24,17 @@ class StoreRole extends FormRequest
      */
     public function rules()
     {
-        return Role::$rules;
+        $rules = Role::$rules;
+        $rules['permission_ids'] = 'required';
+
+        return $rules;
     }
+
+    public function messages()
+    {
+        return [
+            'permission_ids.required' => 'The permissions field is required.'
+        ];
+    }
+
 }
