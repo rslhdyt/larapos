@@ -21,13 +21,26 @@ class RoleTest extends TestCase
      */
     public function testCreateSuccess()
     {
-        $input = factory(App\Role::class)->make()->toArray();
+        $permission = factory(App\Permission::class)->create();
+
+        $input = factory(App\Role::class)->make(['permission_ids' => [$permission->id]])->toArray();
 
         $this->actingAs($this->user)
             ->visit('settings/roles/create')
             ->submitForm('Save', $input)
             ->see('Role created!')
             ->seePageIs('settings/roles');
+    }
+
+    public function testRequiredPermission()
+    {
+        $input = factory(App\Role::class)->make()->toArray();
+
+        $this->actingAs($this->user)
+            ->visit('settings/roles/create')
+            ->submitForm('Save', $input)
+            ->see('The permissions field is required.')
+            ->seePageIs('settings/roles/create');
     }
 
     public function testCreateDuplicateRoleName()
@@ -65,7 +78,9 @@ class RoleTest extends TestCase
     {
         factory(App\Role::class)->create(['name' => 'Role Tests']);
 
-        $input = factory(App\Role::class)->make()->toArray();
+        $permission = factory(App\Permission::class)->create();
+
+        $input = factory(App\Role::class)->make(['permission_ids' => [$permission->id]])->toArray();
 
         $this->actingAs($this->user)
             ->visit('settings/roles/1/edit')
