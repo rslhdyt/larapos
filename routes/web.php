@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function(){
+    Route::resource('customers', 'CustomerController');
     Route::resource('products', 'ProductController');
 });
 

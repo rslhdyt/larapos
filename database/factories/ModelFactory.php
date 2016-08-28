@@ -30,3 +30,12 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
         'price' => $faker->randomNumber(5),
     ];
 });
+
+$factory->define(App\Customer::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'email' => $faker->safeEmail,
+        'phone' => $faker->phoneNumber,
+        'address' => $faker->address,
+    ];
+});
