@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Supplier;
+use App\Role;
 
-class UpdateSupplier extends FormRequest
+class StoreRole extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,6 @@ class UpdateSupplier extends FormRequest
      */
     public function rules()
     {
-        $supplier_id = $this->segment(2);
-
-        $rules = Supplier::$rules;
-        $rules['email'] = 'required|unique:customers,email,' . $supplier_id;
-
-        return $rules; 
+        return Role::$rules;
     }
 }
