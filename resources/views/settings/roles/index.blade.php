@@ -14,6 +14,7 @@
                 <th>#</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Total Member</th>
                 <th></th>
             </tr>
         </thead>
@@ -23,6 +24,7 @@
                 <th>{{ $key + 1 }}</th>
                 <th>{{ $role->name }}</th>
                 <th>{{ $role->description }}</th>
+                <th>{{ $role->users->count() }}</th>
                 <th>
                     <form id="delete-role" action="{{ url('settings/roles/' . $role->id) }}" method="POST" class="form-inline">
                         <input type="hidden" name="_method" value="delete">
