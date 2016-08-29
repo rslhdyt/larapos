@@ -31,6 +31,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Settings Menu</div>
                     <ul class="list-group">
+                        <a href="{{ url('settings/profile') }}"  class="list-group-item">Profile</a>
+                        <a href="{{ url('settings/account') }}"  class="list-group-item">Account</a>
                         <a href="{{ url('settings/roles') }}"  class="list-group-item">Roles</a>
                         <a href="{{ url('settings/permissions') }}"  class="list-group-item">Permissions</a>
                     </ul>
