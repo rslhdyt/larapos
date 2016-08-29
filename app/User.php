@@ -10,6 +10,18 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
+     * rules validasi untuk data suppliers
+     *
+     * @var array
+     */
+    public static $rules = [
+        'name' => 'required',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|min:6|confirmed',
+        'role_id' => 'required'
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -31,4 +43,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Role');
     }
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
 }
