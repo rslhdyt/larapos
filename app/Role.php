@@ -35,4 +35,9 @@ class Role extends Model
     {
         return $this->belongsToMany('App\Permission')->withTimestamps();
     }
+
+    public static function dropdown()
+    {
+        return [NULL => '--Choose Role--'] + Self::all()->pluck('name', 'id')->toArray();
+    }
 }
