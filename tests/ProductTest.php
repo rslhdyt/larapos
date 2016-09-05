@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ProductTest extends TestCase
 {
@@ -14,6 +12,7 @@ class ProductTest extends TestCase
 
         $this->user = factory(App\User::class)->make();
     }
+
     /**
      * A basic test example.
      *
@@ -22,8 +21,8 @@ class ProductTest extends TestCase
     public function testCreateSuccess()
     {
         $input = [
-            'name' => 'Product Tests',
-            'price' => 1000
+            'name'  => 'Product Tests',
+            'price' => 1000,
         ];
 
         $this->actingAs($this->user)
@@ -38,8 +37,8 @@ class ProductTest extends TestCase
         factory(App\Product::class)->create(['name' => 'Product Tests']);
 
         $input = [
-            'name' => 'Product Tests',
-            'price' => 1000
+            'name'  => 'Product Tests',
+            'price' => 1000,
         ];
 
         $this->actingAs($this->user)
@@ -70,8 +69,8 @@ class ProductTest extends TestCase
         factory(App\Product::class)->create(['name' => 'Product Tests']);
 
         $input = [
-            'name' => 'Product Update Test',
-            'price' => 1000
+            'name'  => 'Product Update Test',
+            'price' => 1000,
         ];
 
         $this->actingAs($this->user)

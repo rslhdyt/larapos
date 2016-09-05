@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Role;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRole extends FormRequest
 {
@@ -27,16 +27,16 @@ class UpdateRole extends FormRequest
         $role_id = $this->segment(3);
 
         $rules = Role::$rules;
-        $rules['name'] = 'required|unique:roles,name,' . $role_id;
+        $rules['name'] = 'required|unique:roles,name,'.$role_id;
         $rules['permission_ids'] = 'required';
 
-        return $rules; 
+        return $rules;
     }
 
     public function messages()
     {
         return [
-            'permission_ids.required' => 'The permissions field is required.'
+            'permission_ids.required' => 'The permissions field is required.',
         ];
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use app\Customer;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCustomer extends FormRequest
 {
@@ -27,8 +27,8 @@ class UpdateCustomer extends FormRequest
         $customer_id = $this->segment(2);
 
         $rules = Customer::$rules;
-        $rules['email'] = 'required|unique:customers,email,' . $customer_id;
+        $rules['email'] = 'required|unique:customers,email,'.$customer_id;
 
-        return $rules; 
+        return $rules;
     }
 }

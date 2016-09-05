@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Supplier;
+use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSupplier extends FormRequest
 {

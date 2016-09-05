@@ -15,7 +15,7 @@ class SupplierController extends Controller
     public function index()
     {
         $data = [
-            'suppliers' => Supplier::all()
+            'suppliers' => Supplier::all(),
         ];
 
         return view('suppliers.index', $data);
@@ -34,7 +34,8 @@ class SupplierController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests $request
+     * @param App\Http\Requests $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Requests\StoreSupplier $request)
@@ -50,7 +51,8 @@ class SupplierController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -63,7 +65,8 @@ class SupplierController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -76,8 +79,9 @@ class SupplierController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  App\Http\Requests $request
-     * @param  int  $id
+     * @param App\Http\Requests $request
+     * @param int               $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Requests\UpdateSupplier $request, $id)
@@ -94,7 +98,8 @@ class SupplierController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\User;
+use Illuminate\Database\Seeder;
 
 class UsersSeeder extends Seeder
 {
@@ -15,8 +15,8 @@ class UsersSeeder extends Seeder
         User::truncate();
 
         User::create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
+            'name'     => 'Admin',
+            'email'    => 'admin@example.com',
             'password' => bcrypt('12345678'),
         ]);
     }

@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class SupplierTest extends TestCase
 {
@@ -14,6 +12,7 @@ class SupplierTest extends TestCase
 
         $this->user = factory(App\User::class)->make();
     }
+
     /**
      * A basic test example.
      *
@@ -35,7 +34,7 @@ class SupplierTest extends TestCase
         factory(App\Supplier::class)->create(['email' => 'supplier@example.com']);
 
         $input = factory(App\Supplier::class)->make([
-            'email' => 'supplier@example.com'
+            'email' => 'supplier@example.com',
         ])->toArray();
 
         $this->actingAs($this->user)

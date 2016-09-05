@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Role;
 use App\Permission;
+use App\Role;
 
 class RoleController extends Controller
 {
@@ -16,7 +16,7 @@ class RoleController extends Controller
     public function index()
     {
         $data = [
-            'roles' => Role::all()
+            'roles' => Role::all(),
         ];
 
         return view('settings.roles.index', $data);
@@ -30,7 +30,7 @@ class RoleController extends Controller
     public function create()
     {
         $data = [
-            'permissions' => Permission::grouped()
+            'permissions' => Permission::grouped(),
         ];
 
         return view('settings.roles.create', $data);
@@ -39,7 +39,8 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests $request
+     * @param App\Http\Requests $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Requests\StoreRole $request)
@@ -56,7 +57,8 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -69,7 +71,8 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -77,10 +80,10 @@ class RoleController extends Controller
         $role = Role::findOrFail($id);
 
         $data = [
-            'role' => $role,
+            'role'        => $role,
             'permissions' => Permission::grouped(),
 
-            'selected_permission_ids' => $role->permissions->pluck('id')->toArray()
+            'selected_permission_ids' => $role->permissions->pluck('id')->toArray(),
         ];
 
         return view('settings.roles.edit', $data);
@@ -89,8 +92,9 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  App\Http\Requests $request
-     * @param  int  $id
+     * @param App\Http\Requests $request
+     * @param int               $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Requests\UpdateRole $request, $id)
@@ -109,7 +113,8 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

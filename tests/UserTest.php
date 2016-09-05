@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserTest extends TestCase
 {
@@ -14,6 +12,7 @@ class UserTest extends TestCase
 
         $this->user = factory(App\User::class)->make();
     }
+
     /**
      * A basic test example.
      *
@@ -21,7 +20,7 @@ class UserTest extends TestCase
      */
     public function testCreateSuccess()
     {
-        $input = factory(App\User::class)->make(['role_id' => function(){
+        $input = factory(App\User::class)->make(['role_id' => function () {
             return factory(App\Role::class)->create()->id;
         }])->toArray();
 
@@ -40,7 +39,7 @@ class UserTest extends TestCase
         factory(App\User::class)->create(['email' => 'user@example.com']);
 
         $input = factory(App\User::class)->make([
-            'email' => 'user@example.com'
+            'email' => 'user@example.com',
         ])->toArray();
 
         $this->actingAs($this->user)
@@ -70,7 +69,7 @@ class UserTest extends TestCase
     {
         factory(App\User::class)->create(['name' => 'User Tests']);
 
-        $input = factory(App\User::class)->make(['role_id' => function(){
+        $input = factory(App\User::class)->make(['role_id' => function () {
             return factory(App\Role::class)->create()->id;
         }])->toArray();
 
