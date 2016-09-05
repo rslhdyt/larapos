@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Permission;
+use Illuminate\Database\Seeder;
 
 class PermissionsSeeder extends Seeder
 {
@@ -14,12 +14,10 @@ class PermissionsSeeder extends Seeder
     {
         Permission::truncate();
 
-        foreach (Route::getRoutes()->getRoutes() as $route)
-        {
+        foreach (Route::getRoutes()->getRoutes() as $route) {
             $action_object = $route->getAction();
 
-            if (!empty($action_object['controller']))
-            {
+            if (!empty($action_object['controller'])) {
                 $controller = explode('Controllers\\', $action_object['controller'])[1];
 
                 $controller_split = explode('@', $controller);
@@ -27,11 +25,10 @@ class PermissionsSeeder extends Seeder
                 $action = $controller_split[1];
                 $object = str_replace('Controller', '', $controller);
 
-                if (strpos(strtolower($object), 'auth') === false && !in_array($action, ['store', 'update']))
-                {
+                if (strpos(strtolower($object), 'auth') === false && !in_array($action, ['store', 'update'])) {
                     Permission::create([
                         'object' => $object,
-                        'action' => $action
+                        'action' => $action,
                     ]);
                 }
             }

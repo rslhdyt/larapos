@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use App\Customer;
+use App\Http\Requests;
 
 class CustomerController extends Controller
 {
@@ -15,7 +15,7 @@ class CustomerController extends Controller
     public function index()
     {
         $data = [
-            'customers' => Customer::all()
+            'customers' => Customer::all(),
         ];
 
         return view('customers.index', $data);
@@ -34,7 +34,8 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests $request
+     * @param App\Http\Requests $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Requests\StoreCustomer $request)
@@ -50,7 +51,8 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -63,7 +65,8 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -76,8 +79,9 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  App\Http\Requests $request
-     * @param  int  $id
+     * @param App\Http\Requests $request
+     * @param int               $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Requests\UpdateCustomer $request, $id)
@@ -94,7 +98,8 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

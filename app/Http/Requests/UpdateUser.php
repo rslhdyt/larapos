@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\User;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUser extends FormRequest
 {
@@ -27,16 +27,16 @@ class UpdateUser extends FormRequest
         $user_id = $this->segment(2);
 
         $rules = User::$rules;
-        $rules['email'] = 'required|unique:users,email,' . $user_id;
+        $rules['email'] = 'required|unique:users,email,'.$user_id;
         unset($rules['password']);
 
-        return $rules; 
+        return $rules;
     }
 
     public function messages()
     {
         return [
-            'role_id.required' => 'The role field is required.'
+            'role_id.required' => 'The role field is required.',
         ];
     }
 }

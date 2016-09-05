@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\User;
+use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUser extends FormRequest
 {
@@ -30,7 +30,7 @@ class StoreUser extends FormRequest
     public function messages()
     {
         return [
-            'role_id.required' => 'The role field is required.'
+            'role_id.required' => 'The role field is required.',
         ];
     }
 }

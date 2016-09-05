@@ -2,23 +2,23 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
 
     /**
-     * rules validasi untuk data suppliers
+     * rules validasi untuk data suppliers.
      *
      * @var array
      */
     public static $rules = [
-        'name' => 'required',
-        'email' => 'required|email|unique:users',
+        'name'     => 'required',
+        'email'    => 'required|email|unique:users',
         'password' => 'required|min:6|confirmed',
-        'role_id' => 'required'
+        'role_id'  => 'required',
     ];
 
     /**
@@ -27,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id'
+        'name', 'email', 'password', 'role_id',
     ];
 
     /**
@@ -48,5 +48,4 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($password);
     }
-
 }
