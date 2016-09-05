@@ -7,23 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     /**
-     * rules validasi untuk data suppliers
+     * rules validasi untuk data suppliers.
      *
      * @var array
      */
     public static $rules = [
-        'name' => 'required|unique:roles',
-        'description' => 'required|max:140'
+        'name'        => 'required|unique:roles',
+        'description' => 'required|max:140',
     ];
 
     /**
-     * setup variable mass assignment
+     * setup variable mass assignment.
      *
      * @var array
      */
     protected $fillable = [
         'name',
-        'description'
+        'description',
     ];
 
     public function users()
@@ -38,6 +38,6 @@ class Role extends Model
 
     public static function dropdown()
     {
-        return [NULL => '--Choose Role--'] + Self::all()->pluck('name', 'id')->toArray();
+        return [null => '--Choose Role--'] + Self::all()->pluck('name', 'id')->toArray();
     }
 }

@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     /**
-     * rules validasi untuk data customers
+     * rules validasi untuk data customers.
      *
      * @var array
      */
     public static $rules = [
-        'name' => 'required',
-        'email' => 'required|unique:customers',
-        'phone' => 'required',
-        'address' => 'required'
+        'name'    => 'required',
+        'email'   => 'required|unique:customers',
+        'phone'   => 'required',
+        'address' => 'required',
     ];
 
     /**
-     * setup variable mass assignment
+     * setup variable mass assignment.
      *
      * @var array
      */
@@ -27,6 +27,6 @@ class Customer extends Model
         'name',
         'email',
         'phone',
-        'address'
+        'address',
     ];
 }

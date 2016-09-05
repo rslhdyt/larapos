@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Permission;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePermission extends FormRequest
 {

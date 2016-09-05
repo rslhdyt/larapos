@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         $data = [
-            'products' => Product::all()
+            'products' => Product::all(),
         ];
 
         return view('products.index', $data);
@@ -34,7 +34,8 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests $request
+     * @param App\Http\Requests $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Requests\StoreProduct $request)
@@ -50,7 +51,8 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -63,7 +65,8 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -76,8 +79,9 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  App\Http\Requests $request
-     * @param  int  $id
+     * @param App\Http\Requests $request
+     * @param int               $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Requests\UpdateProduct $request, $id)
@@ -94,7 +98,8 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

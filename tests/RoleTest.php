@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class RoleTest extends TestCase
 {
@@ -14,6 +12,7 @@ class RoleTest extends TestCase
 
         $this->user = factory(App\User::class)->make();
     }
+
     /**
      * A basic test example.
      *
@@ -48,7 +47,7 @@ class RoleTest extends TestCase
         factory(App\Role::class)->create(['name' => 'Role Testing']);
 
         $input = factory(App\Role::class)->make([
-            'name' => 'Role Testing'
+            'name' => 'Role Testing',
         ])->toArray();
 
         $this->actingAs($this->user)

@@ -7,20 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class Supplier extends Model
 {
     /**
-     * rules validasi untuk data suppliers
+     * rules validasi untuk data suppliers.
      *
      * @var array
      */
     public static $rules = [
-        'name' => 'required',
+        'name'         => 'required',
         'company_name' => 'required',
-        'email' => 'required|unique:suppliers',
-        'phone' => 'required',
-        'address' => 'required'
+        'email'        => 'required|unique:suppliers',
+        'phone'        => 'required',
+        'address'      => 'required',
     ];
 
     /**
-     * setup variable mass assignment
+     * setup variable mass assignment.
      *
      * @var array
      */
@@ -29,6 +29,6 @@ class Supplier extends Model
         'company_name',
         'email',
         'phone',
-        'address'
+        'address',
     ];
 }

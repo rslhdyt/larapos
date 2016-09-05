@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Product;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProduct extends FormRequest
 {
@@ -27,7 +27,7 @@ class UpdateProduct extends FormRequest
         $product_id = $this->segment(2);
 
         $rules = Product::$rules;
-        $rules['name'] = 'required|unique:products,name,' . $product_id;
+        $rules['name'] = 'required|unique:products,name,'.$product_id;
 
         return $rules;
     }

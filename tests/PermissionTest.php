@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class PermissionTest extends TestCase
 {
@@ -14,6 +12,7 @@ class PermissionTest extends TestCase
 
         $this->user = factory(App\User::class)->make();
     }
+
     /**
      * A basic test example.
      *

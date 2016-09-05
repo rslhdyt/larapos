@@ -7,27 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
     /**
-     * rules validasi untuk data suppliers
+     * rules validasi untuk data suppliers.
      *
      * @var array
      */
     public static $rules = [
         'object' => 'required',
-        'action' => 'required'
+        'action' => 'required',
     ];
 
     /**
-     * setup variable mass assignment
+     * setup variable mass assignment.
      *
      * @var array
      */
     protected $fillable = [
         'object',
-        'action'
+        'action',
     ];
 
     /**
-     * relation to roles table
+     * relation to roles table.
      */
     public function roles()
     {
@@ -36,7 +36,7 @@ class Permission extends Model
 
     public function getNameAttribute()
     {
-        return $this->attributes['object'] . '.' . $this->attributes['action'];
+        return $this->attributes['object'].'.'.$this->attributes['action'];
     }
 
     public function setObjectAttribute($object)
@@ -55,8 +55,7 @@ class Permission extends Model
 
         $grouped_permission = [];
 
-        foreach ($permissions as $key => $permission) 
-        {
+        foreach ($permissions as $key => $permission) {
             $grouped_permission[$permission->object][] = $permission;
         }
 
