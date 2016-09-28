@@ -20,9 +20,20 @@
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 @if (!Auth::guest())
+                    <li><a href="{{ url('sales/create') }}">Sales</a></li>
+                    <li><a href="{{ url('receivings') }}">Receivings</a></li>
                     <li><a href="{{ url('customers') }}">Customers</a></li>
                     <li><a href="{{ url('suppliers') }}">Suppliers</a></li>
                     <li><a href="{{ url('products') }}">Products</a></li>
+                    <li><a href="{{ url('inventories') }}">Inventories</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Reporting <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ url('reports/sales') }}">Sales</a></li>
+                        </ul>
+                    </li>
                 @endif
             </ul>
 
