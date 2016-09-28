@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
 use App\Sale;
 use App\SaleItem;
 use Illuminate\Http\Request;
@@ -11,7 +10,6 @@ use Validator;
 
 class SaleController extends Controller
 {
-
     /**
      * Store a newly created resource in storage.
      *
@@ -30,12 +28,12 @@ class SaleController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()->all()
+                'errors' => $validator->errors()->all(),
             ], 400);
         }
-        
+
         // create object item
-        $items = collect($form['items'])->map(function($item) {
+        $items = collect($form['items'])->map(function ($item) {
             return new SaleItem($item);
         });
 
@@ -58,5 +56,4 @@ class SaleController extends Controller
 
         return view('products.show', compact('product'));
     }
-
 }
