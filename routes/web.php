@@ -25,6 +25,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('products', 'ProductController');
     Route::resource('users', 'UserController');
 
+    Route::resource('sales', 'SaleController', ['only' => ['create', 'store']]);
+
     Route::group(['prefix' => 'settings'], function () {
         Route::get('/', 'RoleController@index');
         Route::resource('roles', 'RoleController');

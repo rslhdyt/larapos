@@ -25,4 +25,16 @@ class Product extends Model
         'name',
         'price',
     ];
+
+    public function scopeSearchByKeyword($query, $keyword)
+    {
+        if ( $keyword != '' ) {
+            $query->where(function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('barcode', 'LIKE', '%' . $keyword . '%');
+            });
+        }
+
+        return $query;
+    }
 }
