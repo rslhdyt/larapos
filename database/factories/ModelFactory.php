@@ -66,3 +66,18 @@ $factory->define(App\Role::class, function (Faker\Generator $faker) {
         'description' => $faker->text(140),
     ];
 });
+
+$factory->define(App\Sale::class, function (Faker\Generator $faker) {
+    return [
+        'customer_id' => rand(1,9),
+        'cashier_id'  => rand(1,9),
+    ];
+});
+
+$factory->define(App\SaleItem::class, function (Faker\Generator $faker) {
+    return [
+        'product_id' => rand(1,9),
+        'price'      => rand(100,999),
+        'quantity'   => rand(1,99),
+    ];
+});
