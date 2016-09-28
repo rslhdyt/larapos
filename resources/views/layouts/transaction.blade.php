@@ -5,7 +5,11 @@
 
     @include('partials.notification')
 
-    @yield('content')
+    <div class="container">
+        <div class="row">
+            @yield('content')
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
