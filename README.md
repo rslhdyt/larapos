@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/rslhdyt/larapos.svg?branch=master)](https://travis-ci.org/rslhdyt/larapos) 
-[![StyleCI](https://styleci.io/repos/66663471/shield)](https://styleci.io/repos/66663471)
+[![StyleCI](https://styleci.io/repos/66663471/shield?branch=master)](https://styleci.io/repos/66663471)
 
 # larapos
 Simple AH POS built in laravel framework
