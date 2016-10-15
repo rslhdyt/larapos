@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\SaleItem;
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
@@ -24,5 +26,50 @@ class Sale extends Model
     public function items()
     {
         return $this->hasMany('App\SaleItem');
+    }
+
+    public function cashier()
+    {
+        return $this->belongsTo('App\User', 'cashier_id');
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo('App\Customer');
+    }
+
+    public static function search($params = [])
+    {
+        return self::when(!empty($params), function ($query) use ($params) {
+            switch ($params['date_range']) {
+                case 'today':
+                    $query->whereDay('created_at', '=', date('d'));
+                    break;
+                case 'current_week':
+                    // $query->where(DB::raw("YEARWEEK(`created_at`, 1) = YEARWEEK(DATE(), 1)"));
+                    break;
+                case 'current_month':
+                    $query->whereMonth('created_at', '=', date('m'));
+                    break;
+                default:
+                    
+                    break;
+            }
+
+            return $query;
+        })->orderBy('created_at', 'DESC');
+    }
+
+    public static function createAll($input_form)
+    {
+        return DB::transaction(function() use ($input_form){
+            // create object item
+            $items = collect($input_form['items'])->map(function($item) {
+                return new SaleItem($item);
+            });
+
+            $sales = self::create($input_form);
+            $sales->items()->saveMany($items);
+        });
     }
 }
