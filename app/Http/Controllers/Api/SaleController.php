@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
 use App\Sale;
 use Illuminate\Http\Request;
 use Validator;
 
 class SaleController extends Controller
 {
-
     /**
      * Store a newly created resource in storage.
      *
@@ -29,10 +27,10 @@ class SaleController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()->all()
+                'errors' => $validator->errors()->all(),
             ], 400);
         }
-    
+
         Sale::createAll($form);
 
         return response()->json([], 201);
@@ -51,5 +49,4 @@ class SaleController extends Controller
 
         return view('products.show', compact('product'));
     }
-
 }

@@ -48,5 +48,4 @@ class SaleTest extends TestCase
         $this->assertEquals(400, $response->status());
         $this->assertArrayHasKey('errors', $response->getData(true));
     }
-
 }

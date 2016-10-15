@@ -19,6 +19,6 @@ class SaleItem extends Model
 
     public function getSubtotalAttribute()
     {
-        return ($this->attributes['price'] * $this->attributes['quantity']);
+        return $this->attributes['price'] * $this->attributes['quantity'];
     }
 }
