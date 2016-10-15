@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use App\Sale;
 use Illuminate\Http\Request;
 
@@ -18,26 +17,27 @@ class ReportController extends Controller
         $form = $request->all();
 
         $data = [
-            'input' => $form
+            'input' => $form,
         ];
 
         switch ($type) {
             case 'sales':
                 $data['sales'] = Sale::search($form)->get();
                 break;
-            
+
             default:
                 abort(404);
                 break;
         }
 
-        return view('reports.' . $type . '.index', $data);
+        return view('reports.'.$type.'.index', $data);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($type, $id)
@@ -48,13 +48,12 @@ class ReportController extends Controller
             case 'sales':
                 $data['sales'] = Sale::find($id);
                 break;
-            
+
             default:
                 abort(404);
                 break;
         }
 
-        return view('reports.' . $type . '.show', $data);
+        return view('reports.'.$type.'.show', $data);
     }
-
 }
