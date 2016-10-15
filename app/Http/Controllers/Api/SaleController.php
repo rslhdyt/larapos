@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Sale;
-use App\SaleItem;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -33,14 +32,8 @@ class SaleController extends Controller
                 'errors' => $validator->errors()->all()
             ], 400);
         }
-        
-        // create object item
-        $items = collect($form['items'])->map(function($item) {
-            return new SaleItem($item);
-        });
-
-        $sales = Sale::create($form);
-        $sales->items()->saveMany($items);
+    
+        Sale::createAll($form);
 
         return response()->json([], 201);
     }

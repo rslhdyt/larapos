@@ -20,4 +20,13 @@ class SaleController extends Controller
 
         return view('sales.create', $data);
     }
+
+    public function show($id)
+    {
+        $data = [
+
+        ];
+
+        return view('sales.show', $data);
+    }
 }

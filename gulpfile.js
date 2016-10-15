@@ -14,10 +14,11 @@ require('laravel-elixir-vue');
  */
 
 elixir(mix => {
-    mix.sass('app.scss')
-       .copy( 'node_modules/bootstrap-sass/assets/fonts/bootstrap', 'public/fonts/bootstrap')
-       .webpack('app.js')
-       .scripts([
-            'bootstrap-notify.min.js'
-       ]);
+	mix.sass('app.scss')
+	   .styles('custom.css', 'public/css/all.css')
+	   .copy( 'node_modules/bootstrap-sass/assets/fonts/bootstrap', 'public/fonts/bootstrap')
+	   .webpack('app.js')
+	   .scripts([
+			'bootstrap-notify.min.js'
+	   ]);
 });

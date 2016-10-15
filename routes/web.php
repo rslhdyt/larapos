@@ -14,7 +14,7 @@
 Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
 Route::get('/home', 'HomeController@index');
@@ -26,6 +26,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', 'UserController');
 
     Route::resource('sales', 'SaleController', ['only' => ['create', 'store']]);
+
+    Route::get('reports/{type}', 'ReportController@index');
+    Route::get('reports/{type}/{id}', 'ReportController@show');
 
     Route::group(['prefix' => 'settings'], function () {
         Route::get('/', 'RoleController@index');
