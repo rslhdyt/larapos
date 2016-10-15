@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\SaleItem;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
@@ -52,7 +51,7 @@ class Sale extends Model
                     $query->whereMonth('created_at', '=', date('m'));
                     break;
                 default:
-                    
+
                     break;
             }
 
@@ -62,9 +61,9 @@ class Sale extends Model
 
     public static function createAll($input_form)
     {
-        return DB::transaction(function() use ($input_form){
+        return DB::transaction(function () use ($input_form) {
             // create object item
-            $items = collect($input_form['items'])->map(function($item) {
+            $items = collect($input_form['items'])->map(function ($item) {
                 return new SaleItem($item);
             });
 
