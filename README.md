@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/rslhdyt/larapos.svg?branch=master)](https://travis-ci.org/rslhdyt/larapos) 
-[![StyleCI](https://styleci.io/repos/66663471/shield)](https://styleci.io/repos/66663471)
+[![StyleCI](https://styleci.io/repos/66663471/shield?branch=master)](https://styleci.io/repos/66663471)
 
 # LaraPOS
 
@@ -11,7 +11,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisities
 
-What things you need to install the software and how to install them
 - PHP >= 5.6
 - MySQL or Postgres
 - Nodejs
@@ -71,7 +70,6 @@ vendor/bin/phpunit
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
 
 ## Authors
 
