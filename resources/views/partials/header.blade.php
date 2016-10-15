@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/all.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
