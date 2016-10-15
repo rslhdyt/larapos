@@ -21,13 +21,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 2. Install dependency
 
-```
-composer install
-```
+   ```
+   composer install
 
-```
-npm install
-```
+   npm install
+   ```
 
 3. Setup Database
 
