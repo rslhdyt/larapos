@@ -13,8 +13,26 @@ require('./bootstrap');
  * the application, or feel free to tweak this setup for your needs.
  */
 
-// Vue.component('example', require('./components/Example.vue'));
 Vue.component('sales', require('./components/Sales.vue'));
+Vue.component('recieving', require('./components/Recieving.vue'));
+
+
+Vue.http.interceptors.push((request, next) => {
+    request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
+
+    next((response) => {
+        if (response.status == 400) {
+            const message = response.body;
+
+            $.notify(message.errors.join('<br/>'), {
+                type: 'warning',
+                placement: {
+                    from: 'bottom'
+                }
+            });
+        }
+    });
+});
 
 const app = new Vue({
     el: 'body'

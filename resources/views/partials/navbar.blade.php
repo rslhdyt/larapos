@@ -27,9 +27,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Inventories <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('inventories/stock_opnames') }}">Stock Opname</a></li>
                             <li><a href="{{ url('inventories/receivings') }}">Receivings</a></li>
-                            <li><a href="{{ url('inventories/tracking') }}">Tracking</a></li>
+                            <li><a href="{{ url('inventories/adjustments') }}">Adjustments</a></li>
+                            <li><a href="{{ url('inventories/trackings') }}">Trackings</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
