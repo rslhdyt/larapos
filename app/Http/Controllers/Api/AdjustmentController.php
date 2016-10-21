@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Sale;
+use App\Adjustment;
 use Illuminate\Http\Request;
 use Validator;
 
-class SaleController extends Controller
+class AdjustmentController extends Controller
 {
     /**
      * Store a newly created resource in storage.
@@ -20,10 +20,10 @@ class SaleController extends Controller
     {
         $form = $request->all();
 
-        // inject current cashier id
-        $form['cashier_id'] = $request->user()->id;
+        // inject current user id
+        $form['user_id'] = $request->user()->id;
 
-        $rules = Sale::$rules;
+        $rules = Adjustment::$rules;
         $rules['items'] = 'required';
 
         $validator = Validator::make($form, $rules);
@@ -34,9 +34,8 @@ class SaleController extends Controller
             ], 400);
         }
 
-        Sale::createAll($form);
+        Adjustment::createAll($form);
 
         return response()->json([], 201);
     }
-
 }

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Product;
+use App\Supplier;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class ProductController extends Controller
     {
         $keyword = $request->get('q', '');
 
-        $products = Product::searchByKeyword($keyword)->get();
+        $suppliers = Supplier::searchByKeyword($keyword)->get();
 
-        return response()->json($products->toArray());
+        return response()->json($suppliers->toArray());
     }
 }
