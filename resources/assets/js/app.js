@@ -15,7 +15,11 @@ require('./bootstrap');
 
 Vue.component('sales', require('./components/Sales.vue'));
 Vue.component('recieving', require('./components/Recieving.vue'));
+Vue.component('adjustment', require('./components/Adjustment.vue'));
 
+Vue.component('passport-clients',require('./components/passport/Clients.vue'));
+Vue.component('passport-authorized-clients',require('./components/passport/AuthorizedClients.vue'));
+Vue.component('passport-personal-access-tokens',require('./components/passport/PersonalAccessTokens.vue'));
 
 Vue.http.interceptors.push((request, next) => {
     request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
@@ -26,6 +30,13 @@ Vue.http.interceptors.push((request, next) => {
 
             $.notify(message.errors.join('<br/>'), {
                 type: 'warning',
+                placement: {
+                    from: 'bottom'
+                }
+            });
+        } else if (response.status == 500){
+            $.notify('Ups Something went wrong, call administrator!', {
+                type: 'danger',
                 placement: {
                     from: 'bottom'
                 }

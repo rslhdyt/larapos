@@ -24,18 +24,18 @@
                     <tbody>
                     @forelse ($customers as $key => $customer)
                         <tr>
-                            <th>{{ $key + 1 }}</th>
-                            <th>{{ $customer->name }}</th>
-                            <th>{{ $customer->email }}</th>
-                            <th>{{ $customer->phone }}</th>
-                            <th>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $customer->name }}</td>
+                            <td>{{ $customer->email }}</td>
+                            <td>{{ $customer->phone }}</td>
+                            <td>
                                 <form id="delete-customer" action="{{ url('customers/' . $customer->id) }}" method="POST" class="form-inline">
                                     <input type="hidden" name="_method" value="delete">
                                     {{ csrf_field() }}
                                     <input type="submit" value="Delete" class="btn btn-danger btn-xs pull-right btn-delete">
                                 </form>
                                 <a href="{{ url('customers/' . $customer->id . '/edit') }}" class="btn btn-primary btn-xs pull-right">Edit</a>
-                            </th>
+                            </td>
                         </tr>
                     @empty
                         @include('partials.table-blank-slate', ['colspan' => 5])
