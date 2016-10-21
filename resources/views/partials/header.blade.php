@@ -19,6 +19,7 @@
         window.Laravel = <?php echo json_encode([
             'csrfToken'  => csrf_token(),
             'siteUrlApi' => url('api'),
+            'tokenApi'
         ]); ?>
     </script>
 </head>
