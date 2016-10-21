@@ -13,11 +13,12 @@ class UsersSeeder extends Seeder
     public function run()
     {
         User::truncate();
+        DB::table('oauth_access_tokens')->truncate();
 
         User::create([
             'name'     => 'Admin',
             'email'    => 'admin@example.com',
-            'password' => bcrypt('12345678'),
-        ]);
+            'password' => '12345678',
+        ])->createToken('Admin');
     }
 }
