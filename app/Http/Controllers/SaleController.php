@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
+use App\Sale;
 
 class SaleController extends Controller
 {
@@ -13,17 +13,13 @@ class SaleController extends Controller
      */
     public function create()
     {
-        $data = [
-            'products' => Product::all(),
-        ];
-
-        return view('sales.create', $data);
+        return view('sales.create');
     }
 
     public function show($id)
     {
         $data = [
-
+            'sale' => Sale::findOrFail($id)
         ];
 
         return view('sales.show', $data);
