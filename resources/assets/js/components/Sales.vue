@@ -109,14 +109,13 @@
 
         methods: {
             storeItemToCart: function(item) {
-                var cart = Vue.util.extend({}, item);
                 var ids = _.map(this.cart, 'id');
 
-                if (!_.includes(ids, cart.id)) {
-                    cart.quantity = 1;
-                    this.cart.push(cart);
+                if (!_.includes(ids, item.id)) {
+                    item.quantity = 1;
+                    this.cart.push(item);
                 } else {
-                    var index = _.findIndex(this.cart, cart);
+                    var index = _.findIndex(this.cart, item);
                     this.cart[index].quantity = this.cart[index].quantity + 1;
                 }
             },
@@ -151,7 +150,7 @@
             fetchData: function() {
                 // fetch data items
                 this.$http.get('/api/products').then(function(items) {
-                    this.$set('items', items.json());
+                    this.$set('items', items.body);
                 }, function(error) {
                     console.log(error);
                 });
@@ -188,7 +187,6 @@
                 if (confirm('this process cannot be undone'))
                 {
                     this.$http.post('/api/sales', {
-                        cashier_id: 1,
                         customer_id: 1,
                         items: _.map(this.cart, function(cart){
                             return {
