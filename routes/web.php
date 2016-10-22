@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'inventories'], function () {
         Route::resource('receivings', 'ReceivingController', ['except' => ['edit', 'update', 'destroy']]);
+        Route::resource('adjustments', 'AdjustmentController', ['except' => ['edit', 'update', 'destroy']]);
+        Route::get('trackings', 'TrackingController@index');
     });
 
     Route::get('reports/{type}', 'ReportController@index');
