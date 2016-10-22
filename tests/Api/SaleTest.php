@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Laravel\Passport\Passport;
 
 class SaleTest extends TestCase
 {
@@ -26,7 +25,7 @@ class SaleTest extends TestCase
         ])->toArray();
 
         $server = [
-            'X-CSRF-TOKEN' => csrf_token()
+            'X-CSRF-TOKEN' => csrf_token(),
         ];
 
         $response = $this->call('POST', 'api/sales', $sale, [], [], $server);

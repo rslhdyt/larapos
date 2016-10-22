@@ -29,7 +29,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'inventories'], function () {
         Route::resource('receivings', 'ReceivingController', ['except' => ['edit', 'update', 'destroy']]);
-        
     });
 
     Route::get('reports/{type}', 'ReportController@index');
@@ -38,11 +37,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'settings'], function () {
         Route::get('profile', 'ProfileController@edit');
         Route::put('profile', 'ProfileController@update');
-        Route::get('/personal-tokens', function(){
+        Route::get('/personal-tokens', function () {
             return view('settings.users.personal-access-token');
         });
         Route::resource('roles', 'RoleController');
         Route::resource('permissions', 'PermissionController');
     });
 });
-

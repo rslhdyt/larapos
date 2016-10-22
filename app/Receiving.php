@@ -9,7 +9,7 @@ class Receiving extends Model
 {
     public static $rules = [
         'supplier_id' => 'required',
-        'user_id'  => 'required',
+        'user_id'     => 'required',
     ];
 
     /**
@@ -44,7 +44,7 @@ class Receiving extends Model
 
     public function getTotalAmountAttribute()
     {
-        return $this->items->map(function($item){
+        return $this->items->map(function ($item) {
             return $item->price * $item->quantity;
         })->sum();
     }
@@ -61,5 +61,4 @@ class Receiving extends Model
             $sales->items()->saveMany($items);
         });
     }
-
 }

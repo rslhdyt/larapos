@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Adjustment;
-use App\Http\Requests;
 use Illuminate\Http\Request;
 
 class AdjustmentController extends Controller
@@ -16,7 +15,7 @@ class AdjustmentController extends Controller
     public function index()
     {
         $data = [
-            'adjustments' => Adjustment::all()
+            'adjustments' => Adjustment::all(),
         ];
 
         return view('inventories.adjustments.index', $data);
@@ -35,7 +34,8 @@ class AdjustmentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -46,12 +46,12 @@ class AdjustmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //
     }
-
 }

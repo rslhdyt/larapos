@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AdjustmentItem extends Model
 {
-     /**
+    /**
      * setup variable mass assignment.
      *
      * @var array
