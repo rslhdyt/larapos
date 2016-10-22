@@ -42,6 +42,10 @@ php artisan migrate
 ```
 
 ```
+php artisan passport:install
+```
+
+```
 php artisan db:seed
 ```
 
@@ -61,9 +65,7 @@ vendor/bin/phpunit
 
 ## Todo
 
-- Receiving
-- Stock Opname
-- Inventory Tracking
+- Some Awesome Stuff
 
 ## Contributing
 
