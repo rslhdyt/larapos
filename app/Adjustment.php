@@ -51,7 +51,7 @@ class Adjustment extends Model
             $adjustments = self::create($input_form);
             $adjustments->items()->saveMany($items);
 
-            $trackings = $adjustments->items->each(function($item) use ($input_form) {
+            $trackings = $adjustments->items->each(function ($item) use ($input_form) {
                 $tracking = new InventoryTracking([
                     'user_id'    => $input_form['user_id'],
                     'product_id' => $item['product_id'],

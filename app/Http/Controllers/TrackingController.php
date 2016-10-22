@@ -14,7 +14,7 @@ class TrackingController extends Controller
     public function index()
     {
         $data = [
-            'trackings' => InventoryTracking::orderBy('created_at', 'DESC')->get()
+            'trackings' => InventoryTracking::orderBy('created_at', 'DESC')->get(),
         ];
 
         return view('inventories.trackings.index', $data);
@@ -23,7 +23,8 @@ class TrackingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
