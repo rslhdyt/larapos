@@ -48,8 +48,22 @@ class Adjustment extends Model
                 return new AdjustmentItem($item);
             });
 
-            $sales = self::create($input_form);
-            $sales->items()->saveMany($items);
+            $adjustments = self::create($input_form);
+            $adjustments->items()->saveMany($items);
+
+            $trackings = $adjustments->items->each(function($item) use ($input_form) {
+                $tracking = new InventoryTracking([
+                    'user_id'    => $input_form['user_id'],
+                    'product_id' => $item['product_id'],
+                ]);
+
+                // update qty
+                $product = Product::find($item['product_id']);
+                $product->quantity = $product->quantity + $item['diff'];
+                $product->save();
+
+                $item->trackings()->save($tracking);
+            });
         });
     }
 }

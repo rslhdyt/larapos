@@ -17,6 +17,7 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Price</th>
+                            <th>Quantity</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -26,6 +27,7 @@
                             <th>{{ $key + 1 }}</th>
                             <th>{{ $product->name }}</th>
                             <th>{{ $product->price }}</th>
+                            <th>{{ $product->quantity }}</th>
                             <th>
                                 <form id="delete-product" action="{{ url('products/' . $product->id) }}" method="POST" class="form-inline">
                                     <input type="hidden" name="_method" value="delete">

@@ -16,4 +16,9 @@ class AdjustmentItem extends Model
         'adjustment',
         'diff',
     ];
+
+    public function trackings()
+    {
+        return $this->morphOne('App\InventoryTracking', 'trackable');
+    }
 }

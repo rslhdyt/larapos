@@ -21,4 +21,9 @@ class SaleItem extends Model
     {
         return $this->attributes['price'] * $this->attributes['quantity'];
     }
+
+    public function trackings()
+    {
+        return $this->morphOne('App\InventoryTracking', 'trackable');
+    }
 }
