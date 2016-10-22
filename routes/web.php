@@ -46,31 +46,3 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('permissions', 'PermissionController');
     });
 });
-
-Route::get('test', function() {
-    $input_form = [
-        'cashier_id' => 1,
-        'customer_id' => 1,
-        'items' => [
-            [
-                'product_id' => 1,
-                'quantity'   => 1,
-                'price'      => 100,
-            ]
-        ]
-    ];
-
-    // create object item
-    $items = collect($input_form['items'])->map(function ($item) {
-        return new App\SaleItem($item);
-    });
-
-    $sales = App\Sale::create($input_form);
-    $sales->items()->saveMany($items);
-
-    $trackings = $sales->items->each(function($item) use ($input_form) {
-        $tracking = new App\InventoryTracking(['user_id' => $input_form['cashier_id']]);
-
-        $item->trackings()->save($tracking);
-    });
-});
