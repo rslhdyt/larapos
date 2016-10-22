@@ -19,7 +19,7 @@ class SaleController extends Controller
     public function show($id)
     {
         $data = [
-            'sale' => Sale::findOrFail($id)
+            'sale' => Sale::findOrFail($id),
         ];
 
         return view('sales.show', $data);

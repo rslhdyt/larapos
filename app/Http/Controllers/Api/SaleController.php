@@ -38,5 +38,4 @@ class SaleController extends Controller
 
         return response()->json([], 201);
     }
-
 }
