@@ -10,7 +10,6 @@
                         <a href="{{ url('customers/create') }}" class="btn btn-primary btn-xs">Create</a>
                     </div>
                 </div>
-
                 <table class="table">
                     <thead>
                         <tr>
@@ -24,7 +23,7 @@
                     <tbody>
                     @forelse ($customers as $key => $customer)
                         <tr>
-                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $customers->firstItem() + $key }}</td>
                             <td>{{ $customer->name }}</td>
                             <td>{{ $customer->email }}</td>
                             <td>{{ $customer->phone }}</td>
@@ -43,6 +42,9 @@
                     </tbody>
                 </table>
 
+                <div class="panel-footer" style="text-align: right;">
+                    {{ $customers->links() }}
+                </div> 
             </div>
         </div>
     </div>
