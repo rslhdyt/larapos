@@ -1,25 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@include('partials.header')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>Laravel</title>
-
-    <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
-
-    <!-- Scripts -->
-    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
-</head>
 <body>
     @include('partials.navbar')
 
@@ -32,6 +12,7 @@
                     <div class="panel-heading">Settings Menu</div>
                     <ul class="list-group">
                         <a href="{{ url('settings/profile') }}"  class="list-group-item">Profile</a>
+                        <a href="{{ url('settings/general') }}"  class="list-group-item">General</a>
                         <a href="{{ url('settings/personal-tokens') }}"  class="list-group-item">Personal Token</a>
                         <a href="{{ url('settings/roles') }}"  class="list-group-item">Roles</a>
                         <a href="{{ url('settings/permissions') }}"  class="list-group-item">Permissions</a>
