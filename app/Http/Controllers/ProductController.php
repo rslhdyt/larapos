@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Product;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -12,10 +13,16 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $keyword = $request->get('q', '');
+
+        $products = Product::searchByKeyword($keyword)->paginate();
+        $products = !empty($keyword) ? $products->appends(['q' => $keyword]) : $products;        
+
         $data = [
-            'products' => Product::all(),
+            'products' => $products,
+            'keyword'  => $keyword,
         ];
 
         return view('products.index', $data);

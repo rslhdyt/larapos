@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         $keyword = $request->get('q', '');
 
-        $products = Product::searchByKeyword($keyword)->get();
+        $products = Product::searchByKeyword($keyword)->paginate()->appends(['q' => $keyword]);
 
         return response()->json($products->toArray());
     }
