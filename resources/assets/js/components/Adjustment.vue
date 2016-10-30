@@ -119,6 +119,33 @@ export default {
             }
         },
 
+        update () {
+            if (!this.query) {
+                return this.reset()
+            }
+
+            if (this.minChars && this.query.length < this.minChars) {
+                return
+            }
+
+            this.loading = true
+
+            this.fetch().then((response) => {
+                if (this.query) {
+                    let data = response.data.data
+                    data = this.prepareResponseData ? this.prepareResponseData(data) : data
+
+                    this.items = this.limit ? data.slice(0, this.limit) : data
+                    this.current = -1
+                    this.loading = false
+
+                    if (this.selectFirst) {
+                        this.down()
+                    }
+                }
+            })
+        },
+
         deleteItemFromCart: function(item) {
             this.cart.$remove(item);
         },
