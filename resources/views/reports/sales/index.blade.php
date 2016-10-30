@@ -21,13 +21,13 @@
                     @if (!empty($sales))
                         @forelse ($sales as $key => $sale)
                             <tr>
-                                <th>{{ $key + 1 }}</th>
-                                <th>{{ $sale->cashier->name }}</th>
-                                <th>{{ $sale->customer->name }}</th>
-                                <th>{{ $sale->created_at->format('d F Y') }}</th>
-                                <th>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $sale->cashier->name }}</td>
+                                <td>{{ $sale->customer->name }}</td>
+                                <td>{{ $sale->created_at->format('d F Y') }}</td>
+                                <td>
                                     <a href="{{ url('reports/sales/' . $sale->id) }}" class="btn btn-primary btn-xs pull-right">Show</a>
-                                </th>
+                                </td>
                             </tr>
                         @empty
                             @include('partials.table-blank-slate', ['colspan' => 5])

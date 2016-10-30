@@ -19,25 +19,25 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th></th>
+                            <th width="170"></th>
                         </tr>
                     </thead>
                     <tbody>
                     @forelse ($suppliers as $key => $supplier)
                         <tr>
-                            <th>{{ $key + 1 }}</th>
-                            <th>{{ $supplier->company_name }}</th>
-                            <th>{{ $supplier->name }}</th>
-                            <th>{{ $supplier->email }}</th>
-                            <th>{{ $supplier->phone }}</th>
-                            <th>
+                            <td>{{ $suppliers->firstItem() + $key }}</td>
+                            <td>{{ $supplier->company_name }}</td>
+                            <td>{{ $supplier->name }}</td>
+                            <td>{{ $supplier->email }}</td>
+                            <td>{{ $supplier->phone }}</td>
+                            <td>
                                 <form id="delete-supplier" action="{{ url('suppliers/' . $supplier->id) }}" method="POST" class="form-inline">
                                     <input type="hidden" name="_method" value="delete">
                                     {{ csrf_field() }}
                                     <input type="submit" value="Delete" class="btn btn-danger btn-xs pull-right btn-delete">
                                 </form>
                                 <a href="{{ url('suppliers/' . $supplier->id . '/edit') }}" class="btn btn-primary btn-xs pull-right">Edit</a>
-                            </th>
+                            </td>
                         </tr>
                     @empty
                         @include('partials.table-blank-slate', ['colspan' => 6])
@@ -45,6 +45,9 @@
                     </tbody>
                 </table>
 
+                <div class="panel-footer" style="text-align: right;">
+                    {{ $suppliers->links() }}
+                </div> 
             </div>
         </div>
     </div>

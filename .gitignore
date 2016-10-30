@@ -8,3 +8,4 @@ Homestead.yaml
 *.sqlite
 
 storage/oauth-*
+deploy.php

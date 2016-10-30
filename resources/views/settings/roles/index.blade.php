@@ -21,18 +21,18 @@
         <tbody>
         @forelse ($roles as $key => $role)
             <tr>
-                <th>{{ $key + 1 }}</th>
-                <th>{{ $role->name }}</th>
-                <th>{{ $role->description }}</th>
-                <th>{{ $role->users->count() }}</th>
-                <th>
+                <td>{{ $key + 1 }}</td>
+                <td>{{ $role->name }}</td>
+                <td>{{ $role->description }}</td>
+                <td>{{ $role->users->count() }}</td>
+                <td>
                     <form id="delete-role" action="{{ url('settings/roles/' . $role->id) }}" method="POST" class="form-inline">
                         <input type="hidden" name="_method" value="delete">
                         {{ csrf_field() }}
                         <input type="submit" value="Delete" class="btn btn-danger btn-xs pull-right btn-delete">
                     </form>
                     <a href="{{ url('settings/roles/' . $role->id . '/edit') }}" class="btn btn-primary btn-xs pull-right">Edit</a>
-                </th>
+                </td>
             </tr>
         @empty
             @include('partials.table-blank-slate', ['colspan' => 3])

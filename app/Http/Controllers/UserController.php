@@ -47,7 +47,7 @@ class UserController extends Controller
     {
         $form = $request->all();
 
-        $user = User::create($form);
+        $user = User::create($form)->createToken('Default');
 
         return redirect('users')
             ->with('message-success', 'User created!');

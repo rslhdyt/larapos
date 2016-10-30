@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'settings'], function () {
         Route::get('profile', 'ProfileController@edit');
         Route::put('profile', 'ProfileController@update');
+        Route::get('general', 'SettingController@edit');
+        Route::put('general', 'SettingController@update');
         Route::get('/personal-tokens', function () {
             return view('settings.users.personal-access-token');
         });
