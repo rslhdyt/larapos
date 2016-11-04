@@ -70,7 +70,7 @@ class Sale extends Model
             $sales = self::create($input_form);
             $sales->items()->saveMany($items);
 
-            $trackings = $sales->items->each(function($item) use ($input_form) {
+            $trackings = $sales->items->each(function ($item) use ($input_form) {
                 $tracking = new InventoryTracking([
                     'user_id'    => $input_form['cashier_id'],
                     'product_id' => $item['product_id'],

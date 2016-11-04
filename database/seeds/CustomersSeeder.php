@@ -17,7 +17,7 @@ class CustomersSeeder extends Seeder
 
         Customer::truncate();
 
-        foreach (range(0, 100) as $key => $value) { 
+        foreach (range(0, 100) as $key => $value) {
             Customer::create([
                 'name'      => $faker->name,
                 'email'     => $faker->email,

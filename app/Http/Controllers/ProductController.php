@@ -18,7 +18,7 @@ class ProductController extends Controller
         $keyword = $request->get('q', '');
 
         $products = Product::searchByKeyword($keyword)->paginate();
-        $products = !empty($keyword) ? $products->appends(['q' => $keyword]) : $products;        
+        $products = !empty($keyword) ? $products->appends(['q' => $keyword]) : $products;
 
         $data = [
             'products' => $products,

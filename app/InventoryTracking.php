@@ -55,5 +55,4 @@ class InventoryTracking extends Model
             return $query;
         })->orderBy('created_at', 'DESC');
     }
-    
 }

@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Setting extends Model
 {
-
     /**
      * setup variable mass assignment.
      *

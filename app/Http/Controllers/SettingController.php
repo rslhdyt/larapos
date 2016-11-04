@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit()
@@ -26,8 +26,9 @@ class SettingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -35,7 +36,7 @@ class SettingController extends Controller
         $form = $request->except('_method', '_token');
         $form = collect($form);
 
-        $form->each(function($value, $key) {
+        $form->each(function ($value, $key) {
             $setting = Setting::where(['key' => $key])->first();
             $setting->value = $value;
             $setting->save();
@@ -44,5 +45,4 @@ class SettingController extends Controller
         return redirect('settings/general')
             ->with('message-success', 'Setting updated!');
     }
-
 }
