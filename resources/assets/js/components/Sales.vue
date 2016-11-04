@@ -218,6 +218,8 @@
                             }
                         })
                     }).then(function(response) {
+                        let responseBody = response.body;
+
                         this.$set('cart', []);
                         this.form.totalPayment = null;
                         this.form.comments = null;
@@ -229,6 +231,8 @@
                                 from: 'bottom'
                             }
                         });
+
+                        window.open('/sales/receipt/' + responseBody.id);
                     }, function(error) {
                         
                     });

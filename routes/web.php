@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', 'UserController');
 
     Route::resource('sales', 'SaleController', ['only' => ['create', 'store']]);
+    Route::get('sales/receipt/{id}', 'SaleController@receipt');
 
     Route::group(['prefix' => 'inventories'], function () {
         Route::resource('receivings', 'ReceivingController', ['except' => ['edit', 'update', 'destroy']]);

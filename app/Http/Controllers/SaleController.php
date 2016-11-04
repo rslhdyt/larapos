@@ -24,4 +24,13 @@ class SaleController extends Controller
 
         return view('sales.show', $data);
     }
+
+    public function receipt($id)
+    {
+        $data = [
+            'sale' => Sale::findOrFail($id),
+        ];
+
+        return view('sales.receipt', $data);
+    }
 }

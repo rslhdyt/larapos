@@ -34,8 +34,8 @@ class SaleController extends Controller
             ], 400);
         }
 
-        Sale::createAll($form);
+        $sale = Sale::createAll($form);
 
-        return response()->json([], 201);
+        return response()->json($sale, 201);
     }
 }

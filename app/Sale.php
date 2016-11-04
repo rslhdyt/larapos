@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
+
+    public $invoice_prefix = 'INV';
+
+    public $tax_percentage = 10;
+
     public static $rules = [
         'customer_id' => 'required',
         'cashier_id'  => 'required',
@@ -20,6 +25,10 @@ class Sale extends Model
     protected $fillable = [
         'customer_id',
         'cashier_id',
+    ];
+
+    protected $appends = [
+        'invoice_no'
     ];
 
     public function items()
@@ -83,6 +92,27 @@ class Sale extends Model
 
                 $item->trackings()->save($tracking);
             });
+
+            return $sales;
         });
+    }
+
+    public function getInvoiceNoAttribute()
+    {
+        return $this->invoice_prefix . str_pad($this->attributes['id'], 6, 0, STR_PAD_LEFT);
+    }
+
+    public function getSubtotalAttribute()
+    {
+        $subtotal = $this->items->map(function($item){
+            return $item->price * $item->quantity;
+        });
+
+        return $subtotal->sum();
+    }
+
+    public function getTaxAttribute()
+    {
+        return $this->subtotal * ($this->tax_percentage / 100);
     }
 }

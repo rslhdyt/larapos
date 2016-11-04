@@ -26,4 +26,9 @@ class SaleItem extends Model
     {
         return $this->morphOne('App\InventoryTracking', 'trackable');
     }
+
+    public function product()
+    {
+        return $this->belongsTo('App\Product');
+    }
 }
