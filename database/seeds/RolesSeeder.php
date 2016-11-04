@@ -17,7 +17,7 @@ class RolesSeeder extends Seeder
 
         $role = Role::create([
             'name'        => 'Administrator',
-            'description' => 'Role for administrator'
+            'description' => 'Role for administrator',
         ]);
 
         $permissions = Permission::take(10)->get();

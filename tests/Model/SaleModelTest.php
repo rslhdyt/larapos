@@ -1,7 +1,6 @@
 <?php
 
 use App\Sale;
-
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SaleModelTest extends TestCase
@@ -15,9 +14,9 @@ class SaleModelTest extends TestCase
         parent::setUp();
 
         $this->input_form = [
-            'cashier_id' => 1,
+            'cashier_id'  => 1,
             'customer_id' => 1,
-            'items' => [
+            'items'       => [
                 ['product_id' => 1, 'quantity' => 10, 'price' => 100],
                 ['product_id' => 2, 'quantity' => 5, 'price' => 150],
             ],
@@ -39,17 +38,16 @@ class SaleModelTest extends TestCase
 
         // check tracking
         $this->seeInDatabase('inventory_trackings', [
-            'product_id' => 1,
-            'user_id' => 1,
+            'product_id'     => 1,
+            'user_id'        => 1,
             'trackable_type' => 'App\SaleItem',
-            'trackable_id' => 1,
+            'trackable_id'   => 1,
         ]);
 
         // check qty
         $this->seeInDatabase('products', [
-            'id' => 1,
+            'id'       => 1,
             'quantity' => -10,
         ]);
     }
-
 }

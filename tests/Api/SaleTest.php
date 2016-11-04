@@ -2,7 +2,6 @@
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class SaleTest extends AuthTestCase
 {
@@ -23,7 +22,7 @@ class SaleTest extends AuthTestCase
         $sale_items = factory(App\SaleItem::class, 2)->make();
 
         $sale = factory(App\Sale::class)->make([
-            'id'          => rand(1,10),
+            'id'          => rand(1, 10),
             'cashier_id'  => $cashier->id,
             'customer_id' => $customer->id,
             'items'       => $sale_items->toArray(),

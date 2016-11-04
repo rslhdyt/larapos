@@ -17,7 +17,7 @@ class SuppliersSeeder extends Seeder
 
         Supplier::truncate();
 
-        foreach (range(0, 100) as $key => $value) { 
+        foreach (range(0, 100) as $key => $value) {
             Supplier::create([
                 'name'         => $faker->name,
                 'company_name' => $faker->name,
