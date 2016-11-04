@@ -1,16 +1,16 @@
 <?php
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class UserTest extends TestCase
+class UserTest extends AuthTestCase
 {
-    use DatabaseMigrations;
+    use DatabaseMigrations, DatabaseTransactions;
 
     public function setUp()
     {
         parent::setUp();
-
-        $this->user = factory(App\User::class)->make();
     }
 
     /**
@@ -61,7 +61,7 @@ class UserTest extends TestCase
     public function testEditDataNotFound()
     {
         $this->actingAs($this->user)
-            ->get('users/1/edit')
+            ->get('users/2/edit')
             ->assertResponseStatus(404);
     }
 

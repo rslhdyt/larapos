@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class SaleTest extends TestCase
+class SaleTest extends AuthTestCase
 {
     use DatabaseMigrations;
+    use DatabaseTransactions;
 
     /**
      * A basic test example.
@@ -15,43 +18,37 @@ class SaleTest extends TestCase
     {
         $cashier = factory(App\User::class)->create();
         $customer = factory(App\Customer::class)->create();
+        $products = factory(App\Product::class, 10)->create();
 
         $sale_items = factory(App\SaleItem::class, 2)->make();
 
         $sale = factory(App\Sale::class)->make([
+            'id'          => rand(1,10),
             'cashier_id'  => $cashier->id,
             'customer_id' => $customer->id,
             'items'       => $sale_items->toArray(),
         ])->toArray();
 
-        $server = [
-            'X-CSRF-TOKEN' => csrf_token(),
-        ];
-
-        $response = $this->call('POST', 'api/sales', $sale, [], [], $server);
-
-        // temporary pass this test
-        // $this->assertEquals(201, $response->status());
-        $this->assertEquals(true, true);
+        $this->post('api/sales', $sale)->assertResponseStatus(201);
     }
 
-    public function testStoreValidationFailed()
-    {
-        $customer = factory(App\Customer::class)->create();
+    // public function testStoreValidationFailed()
+    // {
+    //     $customer = factory(App\Customer::class)->create();
 
-        $sale_items = factory(App\SaleItem::class, 2)->make();
+    //     $sale_items = factory(App\SaleItem::class, 2)->make();
 
-        $sale = factory(App\Sale::class)->make([
-            'cashier_id'  => null,
-            'customer_id' => null,
-            'items'       => null,
-        ])->toArray();
+    //     $sale = factory(App\Sale::class)->make([
+    //         'cashier_id'  => null,
+    //         'customer_id' => null,
+    //         'items'       => null,
+    //     ])->toArray();
 
-        $response = $this->call('POST', 'api/sales', $sale);
+    //     $response = $this->call('POST', 'api/sales', $sale);
 
-        // temporary pass this test
-        // $this->assertEquals(400, $response->status());
-        // $this->assertArrayHasKey('errors', $response->getData(true));
-        $this->assertEquals(true, true);
-    }
+    //     // temporary pass this test
+    //     // $this->assertEquals(400, $response->status());
+    //     // $this->assertArrayHasKey('errors', $response->getData(true));
+    //     $this->assertEquals(true, true);
+    // }
 }
