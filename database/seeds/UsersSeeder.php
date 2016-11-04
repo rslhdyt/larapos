@@ -1,5 +1,6 @@
 <?php
 
+use App\Role;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -15,10 +16,11 @@ class UsersSeeder extends Seeder
         User::truncate();
         DB::table('oauth_access_tokens')->truncate();
 
-        User::create([
+        $user = User::create([
             'name'     => 'Admin',
             'email'    => 'admin@example.com',
             'password' => '12345678',
+            'role_id'  => Role::first()->id,
         ])->createToken('Default');
     }
 }

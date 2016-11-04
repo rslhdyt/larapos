@@ -12,6 +12,8 @@ class SettingsSeeder extends Seeder
      */
     public function run()
     {
+        Setting::truncate();
+
         Setting::create([
             'key'   => 'data_per_page',
             'label' => 'Data Perpage',
