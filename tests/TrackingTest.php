@@ -24,5 +24,4 @@ class TrackingTest extends TestCase
             ->visit('inventories/trackings')
             ->seePageIs('inventories/trackings');
     }
-
 }

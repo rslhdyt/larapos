@@ -43,5 +43,4 @@ class TrackingController extends Controller
             'product'    => $request->get('product', null),
         ];
     }
-
 }

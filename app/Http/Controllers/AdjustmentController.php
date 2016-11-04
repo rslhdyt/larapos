@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Adjustment;
-use Illuminate\Http\Request;
 
 class AdjustmentController extends Controller
 {

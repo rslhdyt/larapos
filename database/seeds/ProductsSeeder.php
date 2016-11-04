@@ -17,7 +17,7 @@ class ProductsSeeder extends Seeder
 
         Product::truncate();
 
-        foreach (range(0, 100) as $key => $value) { 
+        foreach (range(0, 100) as $key => $value) {
             Product::create([
                 'barcode'     => $faker->randomNumber,
                 'name'        => $faker->name,
