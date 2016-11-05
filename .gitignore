@@ -1,0 +1,6 @@
+.env
+bootstrap/
+deploy.php
+node_modules/
+storage/
+vendor/
