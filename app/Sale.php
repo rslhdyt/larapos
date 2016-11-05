@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
-
     public $invoice_prefix = 'INV';
 
     public $tax_percentage = 10;
@@ -28,7 +27,7 @@ class Sale extends Model
     ];
 
     protected $appends = [
-        'invoice_no'
+        'invoice_no',
     ];
 
     public function items()
@@ -79,7 +78,7 @@ class Sale extends Model
             $sales = self::create($input_form);
             $sales->items()->saveMany($items);
 
-            $trackings = $sales->items->each(function($item) use ($input_form) {
+            $trackings = $sales->items->each(function ($item) use ($input_form) {
                 $tracking = new InventoryTracking([
                     'user_id'    => $input_form['cashier_id'],
                     'product_id' => $item['product_id'],
@@ -99,12 +98,12 @@ class Sale extends Model
 
     public function getInvoiceNoAttribute()
     {
-        return $this->invoice_prefix . str_pad($this->attributes['id'], 6, 0, STR_PAD_LEFT);
+        return $this->invoice_prefix.str_pad($this->attributes['id'], 6, 0, STR_PAD_LEFT);
     }
 
     public function getSubtotalAttribute()
     {
-        $subtotal = $this->items->map(function($item){
+        $subtotal = $this->items->map(function ($item) {
             return $item->price * $item->quantity;
         });
 

@@ -1,7 +1,6 @@
 <?php
 
 use App\Adjustment;
-
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class AdjustmentModelTest extends TestCase
@@ -16,7 +15,7 @@ class AdjustmentModelTest extends TestCase
 
         $this->input_form = [
             'user_id' => 1,
-            'items' => [
+            'items'   => [
                 ['product_id' => 1, 'adjustment' => 10, 'diff' => -10],
                 ['product_id' => 2, 'adjustment' => 5, 'diff' => 5],
             ],
@@ -38,17 +37,16 @@ class AdjustmentModelTest extends TestCase
 
         // check tracking
         $this->seeInDatabase('inventory_trackings', [
-            'product_id' => 1,
-            'user_id' => 1,
+            'product_id'     => 1,
+            'user_id'        => 1,
             'trackable_type' => 'App\AdjustmentItem',
-            'trackable_id' => 1,
+            'trackable_id'   => 1,
         ]);
 
         // check qty
         $this->seeInDatabase('products', [
-            'id' => 1,
+            'id'       => 1,
             'quantity' => -10,
         ]);
     }
-
 }
