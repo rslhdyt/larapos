@@ -225,7 +225,7 @@
                         this.form.comments = null;
                         this.form.customer = {};
 
-                        $.notify('Sales created', {
+                        $.notify('Sales created with <a href="/sales/receipt/' + responseBody.id + '" target="_BLANK">INVOICE</a>', {
                             type: 'success',
                             placement: {
                                 from: 'bottom'
