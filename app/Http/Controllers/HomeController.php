@@ -21,7 +21,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $this->authorize('home-index');
+        $this->authorize('index-home');
 
         return view('home');
     }
