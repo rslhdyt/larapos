@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use app\Customer;
+use App\Customer;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCustomer extends FormRequest
