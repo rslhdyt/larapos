@@ -21,10 +21,6 @@ class Adjustment extends Model
         'user_id',
     ];
 
-    protected $appends = [
-        'total_item',
-    ];
-
     public function user()
     {
         return $this->belongsTo('App\User');
