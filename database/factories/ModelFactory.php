@@ -81,3 +81,31 @@ $factory->define(App\SaleItem::class, function (Faker\Generator $faker) {
         'quantity'   => rand(1, 99),
     ];
 });
+
+$factory->define(App\Adjustment::class, function (Faker\Generator $faker) {
+    return [
+        'user_id'  => rand(1, 9),
+    ];
+});
+
+$factory->define(App\AdjustmentItem::class, function (Faker\Generator $faker) {
+    return [
+        'product_id' => rand(1, 9),
+        'adjustment' => rand(100, 999),
+        'diff'       => rand(1, 99),
+    ];
+});
+
+$factory->define(App\Receiving::class, function (Faker\Generator $faker) {
+    return [
+        'user_id'  => rand(1, 9),
+    ];
+});
+
+$factory->define(App\ReceivingItem::class, function (Faker\Generator $faker) {
+    return [
+        'product_id' => rand(1, 9),
+        'price'      => rand(100, 999),
+        'quantity'   => rand(1, 99),
+    ];
+});
