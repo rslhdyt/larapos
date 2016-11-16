@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use App\User;
 use App\Supplier;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SupplierTest extends TestCase

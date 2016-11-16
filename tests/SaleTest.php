@@ -38,11 +38,11 @@ class SaleTest extends TestCase
             'customer_id' => $customer->id,
         ]);
         $sale_items = factory(SaleItem::class, 2)->create([
-            'sale_id' => $sale->id
+            'sale_id' => $sale->id,
         ]);
 
         $this->actingAs($this->user)
-            ->visit('sales/receipt/' . $sale->id)
+            ->visit('sales/receipt/'.$sale->id)
             ->assertResponseStatus(200);
     }
 }

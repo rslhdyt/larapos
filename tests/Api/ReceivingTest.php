@@ -3,19 +3,16 @@
 namespace Tests\Api;
 
 use App\Product;
-use App\ReceivingItem;
 use App\Receiving;
+use App\ReceivingItem;
 use App\Supplier;
 use App\User;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\AuthTestCase;
 
 class ReceivingTest extends AuthTestCase
 {
     use DatabaseMigrations;
-    use DatabaseTransactions;
 
     /**
      * A basic test example.

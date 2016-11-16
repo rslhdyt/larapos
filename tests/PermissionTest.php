@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use App\User;
 use App\Permission;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class PermissionTest extends TestCase

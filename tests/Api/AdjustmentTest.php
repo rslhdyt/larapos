@@ -4,7 +4,6 @@ namespace Tests\Api;
 
 use App\Adjustment;
 use App\AdjustmentItem;
-use App\Customer;
 use App\Product;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

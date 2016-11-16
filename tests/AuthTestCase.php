@@ -3,8 +3,8 @@
 namespace Tests;
 
 use App\User;
-use DB;
 use DateTime;
+use DB;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\Passport\ClientRepository;
 

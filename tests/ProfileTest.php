@@ -14,7 +14,7 @@ class ProfileTest extends TestCase
         parent::setUp();
 
         $this->user = factory(User::class)->make([
-            'name' => 'Admin Larapos'
+            'name' => 'Admin Larapos',
         ]);
     }
 
