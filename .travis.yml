@@ -12,6 +12,7 @@ install:
 
 script: 
   - php artisan key:generate
+  - php artisan passport:install
   - vendor/bin/phpunit --debug --coverage-text
 
 after_success:
