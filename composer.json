@@ -30,7 +30,10 @@
         "classmap": [
             "tests/TestCase.php",
             "tests/AuthTestCase.php"
-        ]
+        ],
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "scripts": {
         "post-root-package-install": [

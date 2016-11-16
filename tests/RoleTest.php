@@ -1,5 +1,10 @@
 <?php
 
+namespace Tests;
+
+use App\Permission;
+use App\Role;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class RoleTest extends TestCase
@@ -10,7 +15,7 @@ class RoleTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(App\User::class)->make();
+        $this->user = factory(User::class)->make();
     }
 
     /**
@@ -20,9 +25,9 @@ class RoleTest extends TestCase
      */
     public function testCreateSuccess()
     {
-        $permission = factory(App\Permission::class)->create();
+        $permission = factory(Permission::class)->create();
 
-        $input = factory(App\Role::class)->make(['permission_ids' => [$permission->id]])->toArray();
+        $input = factory(Role::class)->make(['permission_ids' => [$permission->id]])->toArray();
 
         $this->actingAs($this->user)
             ->visit('settings/roles/create')
@@ -33,7 +38,7 @@ class RoleTest extends TestCase
 
     public function testRequiredPermission()
     {
-        $input = factory(App\Role::class)->make()->toArray();
+        $input = factory(Role::class)->make()->toArray();
 
         $this->actingAs($this->user)
             ->visit('settings/roles/create')
@@ -44,9 +49,9 @@ class RoleTest extends TestCase
 
     public function testCreateDuplicateRoleName()
     {
-        factory(App\Role::class)->create(['name' => 'Role Testing']);
+        factory(Role::class)->create(['name' => 'Role Testing']);
 
-        $input = factory(App\Role::class)->make([
+        $input = factory(Role::class)->make([
             'name' => 'Role Testing',
         ])->toArray();
 
@@ -59,7 +64,7 @@ class RoleTest extends TestCase
 
     public function testEditDataAvailable()
     {
-        factory(App\Role::class)->create();
+        factory(Role::class)->create();
 
         $this->actingAs($this->user)
             ->visit('settings/roles/1/edit')
@@ -75,11 +80,11 @@ class RoleTest extends TestCase
 
     public function testUpdateSuccess()
     {
-        factory(App\Role::class)->create(['name' => 'Role Tests']);
+        factory(Role::class)->create(['name' => 'Role Tests']);
 
-        $permission = factory(App\Permission::class)->create();
+        $permission = factory(Permission::class)->create();
 
-        $input = factory(App\Role::class)->make(['permission_ids' => [$permission->id]])->toArray();
+        $input = factory(Role::class)->make(['permission_ids' => [$permission->id]])->toArray();
 
         $this->actingAs($this->user)
             ->visit('settings/roles/1/edit')
@@ -90,7 +95,7 @@ class RoleTest extends TestCase
 
     public function testDeleteSuccess()
     {
-        factory(App\Role::class)->create(['name' => 'Role Tests']);
+        factory(Role::class)->create(['name' => 'Role Tests']);
 
         $this->actingAs($this->user)
             ->visit('settings/roles')

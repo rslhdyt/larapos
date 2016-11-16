@@ -1,7 +1,13 @@
 <?php
 
+namespace Tests\Model;
+
+use App\Product;
 use App\Receiving;
+use App\Supplier;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class ReceivingModelTest extends TestCase
 {
@@ -30,9 +36,9 @@ class ReceivingModelTest extends TestCase
      */
     public function testCreateAllSuccess()
     {
-        $user = factory(App\User::class)->create();
-        $supplier = factory(App\Supplier::class)->create();
-        $products = factory(App\Product::class, 2)->create();
+        $user = factory(User::class)->create();
+        $supplier = factory(Supplier::class)->create();
+        $products = factory(Product::class, 2)->create();
 
         $sales = Receiving::createAll($this->input_form);
 

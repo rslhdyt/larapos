@@ -1,6 +1,10 @@
 <?php
 
+namespace Tests;
+
 use App\User;
+use DateTime;
+use DB;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\Passport\ClientRepository;
 

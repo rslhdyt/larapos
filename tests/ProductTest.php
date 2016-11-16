@@ -1,5 +1,9 @@
 <?php
 
+namespace Tests;
+
+use App\Product;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ProductTest extends TestCase
@@ -10,7 +14,27 @@ class ProductTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(App\User::class)->make();
+        $this->user = factory(User::class)->make();
+    }
+
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function testSearchSuccess()
+    {
+        factory(Product::class)->create(['name' => 'Product Tests']);
+
+        $input = [
+            'q'  => 'Tests',
+        ];
+
+        $this->actingAs($this->user)
+            ->visit('products')
+            ->submitForm('Search', $input)
+            ->see('Product Tests')
+            ->seePageIs('products?q=Tests');
     }
 
     /**
@@ -34,7 +58,7 @@ class ProductTest extends TestCase
 
     public function testCreateDuplicateProductName()
     {
-        factory(App\Product::class)->create(['name' => 'Product Tests']);
+        factory(Product::class)->create(['name' => 'Product Tests']);
 
         $input = [
             'name'  => 'Product Tests',
@@ -50,7 +74,7 @@ class ProductTest extends TestCase
 
     public function testEditDataAvailable()
     {
-        factory(App\Product::class)->create();
+        factory(Product::class)->create();
 
         $this->actingAs($this->user)
             ->visit('products/1/edit')
@@ -66,7 +90,7 @@ class ProductTest extends TestCase
 
     public function testUpdateSuccess()
     {
-        factory(App\Product::class)->create(['name' => 'Product Tests']);
+        factory(Product::class)->create(['name' => 'Product Tests']);
 
         $input = [
             'name'  => 'Product Update Test',
@@ -82,7 +106,7 @@ class ProductTest extends TestCase
 
     public function testDeleteSuccess()
     {
-        factory(App\Product::class)->create(['name' => 'Product Tests']);
+        factory(Product::class)->create(['name' => 'Product Tests']);
 
         $this->actingAs($this->user)
             ->visit('products')

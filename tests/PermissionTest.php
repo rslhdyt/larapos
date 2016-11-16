@@ -1,5 +1,9 @@
 <?php
 
+namespace Tests;
+
+use App\Permission;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class PermissionTest extends TestCase
@@ -10,7 +14,7 @@ class PermissionTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(App\User::class)->make();
+        $this->user = factory(User::class)->make();
     }
 
     /**
@@ -20,7 +24,7 @@ class PermissionTest extends TestCase
      */
     public function testCreateSuccess()
     {
-        $input = factory(App\Permission::class)->make()->toArray();
+        $input = factory(Permission::class)->make()->toArray();
 
         $this->actingAs($this->user)
             ->visit('settings/permissions/create')
@@ -31,7 +35,7 @@ class PermissionTest extends TestCase
 
     // public function testCreateDuplicatePermissionName()
     // {
-    //     factory(App\Permission::class)->create(['name' => 'Permission Tests']);
+    //     factory(Permission::class)->create(['name' => 'Permission Tests']);
 
     //     $input = [
     //         'name' => 'Permission Tests',
@@ -47,7 +51,7 @@ class PermissionTest extends TestCase
 
     public function testEditDataAvailable()
     {
-        factory(App\Permission::class)->create();
+        factory(Permission::class)->create();
 
         $this->actingAs($this->user)
             ->visit('settings/permissions/1/edit')
@@ -63,9 +67,9 @@ class PermissionTest extends TestCase
 
     public function testUpdateSuccess()
     {
-        factory(App\Permission::class)->create();
+        factory(Permission::class)->create();
 
-        $input = factory(App\Permission::class)->make()->toArray();
+        $input = factory(Permission::class)->make()->toArray();
 
         $this->actingAs($this->user)
             ->visit('settings/permissions/1/edit')
@@ -76,7 +80,7 @@ class PermissionTest extends TestCase
 
     public function testDeleteSuccess()
     {
-        factory(App\Permission::class)->create();
+        factory(Permission::class)->create();
 
         $this->actingAs($this->user)
             ->visit('settings/permissions')

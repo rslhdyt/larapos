@@ -1,5 +1,9 @@
 <?php
 
+namespace Tests;
+
+use App\Supplier;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SupplierTest extends TestCase
@@ -10,7 +14,7 @@ class SupplierTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(App\User::class)->make();
+        $this->user = factory(User::class)->make();
     }
 
     /**
@@ -20,7 +24,7 @@ class SupplierTest extends TestCase
      */
     public function testCreateSuccess()
     {
-        $input = factory(App\Supplier::class)->make()->toArray();
+        $input = factory(Supplier::class)->make()->toArray();
 
         $this->actingAs($this->user)
             ->visit('suppliers/create')
@@ -31,9 +35,9 @@ class SupplierTest extends TestCase
 
     public function testCreateDuplicateSupplierEmail()
     {
-        factory(App\Supplier::class)->create(['email' => 'supplier@example.com']);
+        factory(Supplier::class)->create(['email' => 'supplier@example.com']);
 
-        $input = factory(App\Supplier::class)->make([
+        $input = factory(Supplier::class)->make([
             'email' => 'supplier@example.com',
         ])->toArray();
 
@@ -46,7 +50,7 @@ class SupplierTest extends TestCase
 
     public function testEditDataAvailable()
     {
-        factory(App\Supplier::class)->create();
+        factory(Supplier::class)->create();
 
         $this->actingAs($this->user)
             ->visit('suppliers/1/edit')
@@ -62,9 +66,9 @@ class SupplierTest extends TestCase
 
     public function testUpdateSuccess()
     {
-        factory(App\Supplier::class)->create(['name' => 'Supplier Tests']);
+        factory(Supplier::class)->create(['name' => 'Supplier Tests']);
 
-        $input = factory(App\Supplier::class)->make()->toArray();
+        $input = factory(Supplier::class)->make()->toArray();
 
         $this->actingAs($this->user)
             ->visit('suppliers/1/edit')
@@ -75,7 +79,7 @@ class SupplierTest extends TestCase
 
     public function testDeleteSuccess()
     {
-        factory(App\Supplier::class)->create(['name' => 'Supplier Tests']);
+        factory(Supplier::class)->create(['name' => 'Supplier Tests']);
 
         $this->actingAs($this->user)
             ->visit('suppliers')

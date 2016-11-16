@@ -1,7 +1,15 @@
 <?php
 
+namespace Tests\Api;
+
+use App\Customer;
+use App\Product;
+use App\Sale;
+use App\SaleItem;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\AuthTestCase;
 
 class SaleTest extends AuthTestCase
 {
@@ -15,13 +23,13 @@ class SaleTest extends AuthTestCase
      */
     public function testStoreSuccess()
     {
-        $cashier = factory(App\User::class)->create();
-        $customer = factory(App\Customer::class)->create();
-        $products = factory(App\Product::class, 10)->create();
+        $cashier = factory(User::class)->create();
+        $customer = factory(Customer::class)->create();
+        $products = factory(Product::class, 10)->create();
 
-        $sale_items = factory(App\SaleItem::class, 2)->make();
+        $sale_items = factory(SaleItem::class, 2)->make();
 
-        $sale = factory(App\Sale::class)->make([
+        $sale = factory(Sale::class)->make([
             'id'          => rand(1, 10),
             'cashier_id'  => $cashier->id,
             'customer_id' => $customer->id,
@@ -31,23 +39,21 @@ class SaleTest extends AuthTestCase
         $this->post('api/sales', $sale)->assertResponseStatus(201);
     }
 
-    // public function testStoreValidationFailed()
-    // {
-    //     $customer = factory(App\Customer::class)->create();
+    public function testStoreValidationFailed()
+    {
+        $products = factory(Product::class, 10)->create();
 
-    //     $sale_items = factory(App\SaleItem::class, 2)->make();
+        $sale_items = factory(SaleItem::class, 2)->make();
 
-    //     $sale = factory(App\Sale::class)->make([
-    //         'cashier_id'  => null,
-    //         'customer_id' => null,
-    //         'items'       => null,
-    //     ])->toArray();
+        $sale = factory(Sale::class)->make([
+            'id'          => rand(1, 10),
+            'cashier_id'  => null,
+            'customer_id' => null,
+            'items'       => null,
+        ])->toArray();
 
-    //     $response = $this->call('POST', 'api/sales', $sale);
+        $response = $this->call('POST', 'api/sales', $sale);
 
-    //     // temporary pass this test
-    //     // $this->assertEquals(400, $response->status());
-    //     // $this->assertArrayHasKey('errors', $response->getData(true));
-    //     $this->assertEquals(true, true);
-    // }
+        $this->post('api/sales', $sale)->assertResponseStatus(400);
+    }
 }

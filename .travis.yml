@@ -12,8 +12,8 @@ install:
 
 script: 
   - php artisan key:generate
-  - php artisan passport:install
-  - vendor/bin/phpunit --debug
+  - php artisan passport:keys
+  - vendor/bin/phpunit --debug --coverage-text
 
 after_success:
   - travis_retry php vendor/bin/coveralls

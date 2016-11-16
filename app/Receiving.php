@@ -22,11 +22,6 @@ class Receiving extends Model
         'user_id',
     ];
 
-    protected $appends = [
-        'total_item',
-        'total_amount',
-    ];
-
     public function supplier()
     {
         return $this->belongsTo('App\Supplier');
