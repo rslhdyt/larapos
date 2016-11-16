@@ -9,3 +9,4 @@ Homestead.yaml
 
 storage/oauth-*
 deploy.php
+coverage/
