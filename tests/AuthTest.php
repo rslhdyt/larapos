@@ -5,7 +5,7 @@ namespace Tests;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class TrackingTest extends TestCase
+class AuthTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -21,10 +21,10 @@ class TrackingTest extends TestCase
      *
      * @return void
      */
-    public function testPageTracking()
+    public function testRedirectIfAuthenticate()
     {
         $this->actingAs($this->user)
-            ->visit('inventories/trackings')
-            ->seePageIs('inventories/trackings');
+            ->visit('login')
+            ->seePageIs('home');
     }
 }

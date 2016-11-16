@@ -1,5 +1,9 @@
 <?php
 
+namespace Tests;
+
+use App\Role;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
@@ -19,8 +23,8 @@ class UserTest extends AuthTestCase
      */
     public function testCreateSuccess()
     {
-        $input = factory(App\User::class)->make(['role_id' => function () {
-            return factory(App\Role::class)->create()->id;
+        $input = factory(User::class)->make(['role_id' => function () {
+            return factory(Role::class)->create()->id;
         }])->toArray();
 
         $input['password'] = 12345678;
@@ -35,9 +39,9 @@ class UserTest extends AuthTestCase
 
     public function testCreateDuplicateUserEmail()
     {
-        factory(App\User::class)->create(['email' => 'user@example.com']);
+        factory(User::class)->create(['email' => 'user@example.com']);
 
-        $input = factory(App\User::class)->make([
+        $input = factory(User::class)->make([
             'email' => 'user@example.com',
         ])->toArray();
 
@@ -50,7 +54,7 @@ class UserTest extends AuthTestCase
 
     public function testEditDataAvailable()
     {
-        factory(App\User::class)->create();
+        factory(User::class)->create();
 
         $this->actingAs($this->user)
             ->visit('users/1/edit')
@@ -66,10 +70,10 @@ class UserTest extends AuthTestCase
 
     public function testUpdateSuccess()
     {
-        factory(App\User::class)->create(['name' => 'User Tests']);
+        factory(User::class)->create(['name' => 'User Tests']);
 
-        $input = factory(App\User::class)->make(['role_id' => function () {
-            return factory(App\Role::class)->create()->id;
+        $input = factory(User::class)->make(['role_id' => function () {
+            return factory(Role::class)->create()->id;
         }])->toArray();
 
         $this->actingAs($this->user)
@@ -81,7 +85,7 @@ class UserTest extends AuthTestCase
 
     public function testDeleteSuccess()
     {
-        factory(App\User::class)->create(['name' => 'User Tests']);
+        factory(User::class)->create(['name' => 'User Tests']);
 
         $this->actingAs($this->user)
             ->visit('users')

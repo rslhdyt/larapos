@@ -5,7 +5,7 @@ namespace Tests;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class TrackingTest extends TestCase
+class SettingTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -16,15 +16,11 @@ class TrackingTest extends TestCase
         $this->user = factory(User::class)->make();
     }
 
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testPageTracking()
+    public function testEdit()
     {
         $this->actingAs($this->user)
-            ->visit('inventories/trackings')
-            ->seePageIs('inventories/trackings');
+            ->visit('settings/general')
+            ->see('General Setting')
+            ->seePageIs('settings/general');
     }
 }

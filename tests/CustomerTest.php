@@ -1,5 +1,9 @@
 <?php
 
+namespace Tests;
+
+use App\Customer;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class CustomerTest extends TestCase
@@ -10,7 +14,7 @@ class CustomerTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = factory(App\User::class)->make();
+        $this->user = factory(User::class)->make();
     }
 
     /**
@@ -20,7 +24,7 @@ class CustomerTest extends TestCase
      */
     public function testCreateSuccess()
     {
-        $input = factory(App\Customer::class)->make()->toArray();
+        $input = factory(Customer::class)->make()->toArray();
 
         $this->actingAs($this->user)
             ->visit('customers/create')
@@ -31,9 +35,9 @@ class CustomerTest extends TestCase
 
     public function testCreateDuplicateCustomerEmail()
     {
-        factory(App\Customer::class)->create(['email' => 'customer@example.com']);
+        factory(Customer::class)->create(['email' => 'customer@example.com']);
 
-        $input = factory(App\Customer::class)->make([
+        $input = factory(Customer::class)->make([
             'email' => 'customer@example.com',
         ])->toArray();
 
@@ -46,7 +50,7 @@ class CustomerTest extends TestCase
 
     public function testEditDataAvailable()
     {
-        factory(App\Customer::class)->create();
+        factory(Customer::class)->create();
 
         $this->actingAs($this->user)
             ->visit('customers/1/edit')
@@ -62,9 +66,9 @@ class CustomerTest extends TestCase
 
     public function testUpdateSuccess()
     {
-        factory(App\Customer::class)->create(['name' => 'Customer Tests']);
+        factory(Customer::class)->create(['name' => 'Customer Tests']);
 
-        $input = factory(App\Customer::class)->make()->toArray();
+        $input = factory(Customer::class)->make()->toArray();
 
         $this->actingAs($this->user)
             ->visit('customers/1/edit')
@@ -75,7 +79,7 @@ class CustomerTest extends TestCase
 
     public function testDeleteSuccess()
     {
-        factory(App\Customer::class)->create(['name' => 'Customer Tests']);
+        factory(Customer::class)->create(['name' => 'Customer Tests']);
 
         $this->actingAs($this->user)
             ->visit('customers')
