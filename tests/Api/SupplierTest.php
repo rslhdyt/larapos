@@ -18,7 +18,7 @@ class SupplierTest extends TestCase
     public function testIndex()
     {
         $suppliers = factory(Supplier::class, 10)->create();
-        
+
         $this->get('api/suppliers')->assertResponseStatus(200);
     }
 }

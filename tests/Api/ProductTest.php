@@ -18,7 +18,7 @@ class ProductTest extends TestCase
     public function testIndex()
     {
         $products = factory(Product::class, 10)->create();
-        
+
         $this->get('api/products')->assertResponseStatus(200);
     }
 }
