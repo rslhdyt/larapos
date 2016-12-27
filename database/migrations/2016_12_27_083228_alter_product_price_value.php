@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AlterProductPriceValue extends Migration
 {
@@ -15,7 +15,7 @@ class AlterProductPriceValue extends Migration
     {
         //
         Schema::table('products', function (Blueprint $table) {
-            $table->decimal('price',12,2)->change();
+            $table->decimal('price', 12, 2)->change();
         });
     }
 
@@ -28,7 +28,7 @@ class AlterProductPriceValue extends Migration
     {
         //
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn(['price',8,2])->change();
+            $table->dropColumn(['price', 8, 2])->change();
         });
     }
 }
