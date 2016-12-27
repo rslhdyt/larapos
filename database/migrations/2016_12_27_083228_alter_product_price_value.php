@@ -28,7 +28,7 @@ class AlterProductPriceValue extends Migration
     {
         //
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn(['price', 8, 2])->change();
+            $table->dropColumn('price', 8, 2)->change();
         });
     }
 }
