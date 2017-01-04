@@ -42,7 +42,6 @@ class LaraposInstaller extends Command
         // $applicationName = $this->ask('What is your application name?');
 
         if ($this->checkInstaller()) {
-
             $this->generateEnvFile();
 
             $this->call('key:generate');
