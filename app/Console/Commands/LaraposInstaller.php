@@ -71,7 +71,7 @@ class LaraposInstaller extends Command
     }
 
     /**
-     * 
+     * generate .env file and fill the value from command
      */
     private function generateEnvFile()
     {
@@ -89,39 +89,39 @@ class LaraposInstaller extends Command
 
         $newEnv = '';
 
-        while(!feof($envContents)) {
+        while (!feof($envContents)) {
             $env = explode('=', fgets($envContents));
 
             $envKey = $env[0];
             $envVal = !empty($env[1]) ? $env[1] : NULL;
 
-            if ($envKey != "\n" && $envKey != "") {
+            if ($envKey != "\n" && $envKey != '') {
                 switch ($envKey) {
                     case 'DB_CONNECTION':
-                        $newEnv .= $envKey . '=' . $databaseDriver . PHP_EOL;
+                        $newEnv .= $envKey.'='.$databaseDriver.PHP_EOL;
                         break;
                     case 'DB_HOST':
-                        $newEnv .= $envKey . '=' . $databaseHost . PHP_EOL;
+                        $newEnv .= $envKey.'='.$databaseHost.PHP_EOL;
                         break;
                     case 'DB_PORT':
                         if (empty($databasePort)) {
                             $databasePort = ($databaseDriver == 'pgsql') ? '5432' : '3306';
                         }
 
-                        $newEnv .= $envKey . '=' . $databasePort . PHP_EOL;
+                        $newEnv .= $envKey.'='.$databasePort.PHP_EOL;
                         break;
                     case 'DB_DATABASE':
-                        $newEnv .= $envKey . '=' . $databaseName . PHP_EOL;
+                        $newEnv .= $envKey.'='.$databaseName.PHP_EOL;
                         break;
                     case 'DB_USERNAME':
-                        $newEnv .= $envKey . '=' . $databaseUser . PHP_EOL;
+                        $newEnv .= $envKey.'='.$databaseUser.PHP_EOL;
                         break;
                     case 'DB_PASSWORD':
-                        $newEnv .= $envKey . '=' . $databasePassword . PHP_EOL;
+                        $newEnv .= $envKey.'='.$databasePassword.PHP_EOL;
                         break;
 
                     default:
-                        $newEnv .= $envKey . '=' . $envVal;
+                        $newEnv .= $envKey.'='.$envVal;
 
                         break;
                 }
@@ -132,6 +132,6 @@ class LaraposInstaller extends Command
 
         file_put_contents('.env', $newEnv);
 
-        fclose($envContents); 
+        fclose($envContents);
     }
 }
