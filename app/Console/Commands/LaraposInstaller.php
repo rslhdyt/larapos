@@ -71,7 +71,7 @@ class LaraposInstaller extends Command
     }
 
     /**
-     * generate .env file and fill the value from command
+     * generate .env file and fill the value from command.
      */
     private function generateEnvFile()
     {
@@ -93,7 +93,7 @@ class LaraposInstaller extends Command
             $env = explode('=', fgets($envContents));
 
             $envKey = $env[0];
-            $envVal = !empty($env[1]) ? $env[1] : NULL;
+            $envVal = !empty($env[1]) ? $env[1] : null;
 
             if ($envKey != "\n" && $envKey != '') {
                 switch ($envKey) {
