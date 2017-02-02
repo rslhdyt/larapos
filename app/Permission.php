@@ -36,7 +36,7 @@ class Permission extends Model
 
     public function getNameAttribute()
     {
-        return $this->attributes['object'].'.'.$this->attributes['action'];
+        return $this->attributes['action'] . '-' . $this->attributes['object'];
     }
 
     public function setObjectAttribute($object)

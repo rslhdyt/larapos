@@ -26,7 +26,7 @@
                             <tr>
                                 <td>{{ $trackings->firstItem() + $key }}</td>
                                 <td>{{ $tracking->user->name }}</td>
-                                <td>{{ $tracking->product->name }}</td>
+                                <td>{{ ($tracking->product) ? $tracking->product->name : 'PROD-'.$tracking->product_id }}</td>
 
                                     @if ($tracking->trackable_type == 'App\SaleItem')
                                         <td>-</td>

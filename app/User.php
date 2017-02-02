@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($password);
     }
+
+    public function hasPermission($permission)
+    {
+        return !! $this->role->get()->intersect($permission->roles)->count();
+    }
 }
