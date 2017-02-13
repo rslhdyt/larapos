@@ -17,7 +17,7 @@ class SupplierController extends Controller
     {
         $keyword = $request->get('q', '');
 
-        $suppliers = Supplier::searchByKeyword($keyword)->get();
+        $suppliers = Supplier::searchByKeyword($keyword)->paginate()->appends(['q' => $keyword]);
 
         return response()->json($suppliers->toArray());
     }
