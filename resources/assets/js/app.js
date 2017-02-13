@@ -17,6 +17,8 @@ Vue.component('sales', require('./components/Sales.vue'));
 Vue.component('recieving', require('./components/Recieving.vue'));
 Vue.component('adjustment', require('./components/Adjustment.vue'));
 
+Vue.component('larapos-autocomplete', require('./components/helpers/LaraposAutocomplete.vue'));
+
 Vue.component('passport-clients',require('./components/passport/Clients.vue'));
 Vue.component('passport-authorized-clients',require('./components/passport/AuthorizedClients.vue'));
 Vue.component('passport-personal-access-tokens',require('./components/passport/PersonalAccessTokens.vue'));
@@ -50,7 +52,5 @@ Vue.http.interceptors.push((request, next) => {
 });
 
 const app = new Vue({
-    el: 'body'
+    el: '#app'
 });
-
-

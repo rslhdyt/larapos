@@ -1,5 +1,5 @@
 @extends('layouts.transaction')
 
 @section('content')
-<sales></sales>
+    <sales></sales>
 @endsection
