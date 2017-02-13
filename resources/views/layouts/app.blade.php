@@ -1,12 +1,13 @@
 @include('partials.header')
 
 <body>
-    @include('partials.navbar')
+    <div id="app">
+        @include('partials.navbar')
 
-    @include('partials.notification')
+        @include('partials.notification')
 
-    @yield('content')
-
+        @yield('content')
+    </div>
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     <script src="/js/all.js"></script>

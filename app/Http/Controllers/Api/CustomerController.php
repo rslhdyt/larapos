@@ -17,7 +17,7 @@ class CustomerController extends Controller
     {
         $keyword = $request->get('q', '');
 
-        $products = Customer::searchByKeyword($keyword)->get();
+        $products = Customer::searchByKeyword($keyword)->paginate()->appends(['q' => $keyword]);
 
         return response()->json($products->toArray());
     }

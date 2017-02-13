@@ -9,6 +9,8 @@
 
                 <div class="panel-body">
                     You are logged in!
+
+                    <larapos-autocomplete label="Search..." src="api/products" placeholder="Cauu..."></larapos-autocomplete>
                 </div>
             </div>
         </div>
