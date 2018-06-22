@@ -11,7 +11,10 @@
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/passport": "~4.0",
-        "laravel/tinker": "~1.0"
+        "laravel/scout": "^4.0",
+        "laravel/tinker": "~1.0",
+        "maatwebsite/excel": "^3.0",
+        "teamtnt/laravel-scout-tntsearch-driver": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",
@@ -27,7 +30,10 @@
         ],
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": [
+            "app/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
