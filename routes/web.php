@@ -32,10 +32,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('customers/export', 'CustomerController@export')->name('customers.export');
     Route::resource('customers', 'CustomerController');
     
+    Route::get('unit-of-measures/trash', 'UnitOfMeasureController@trash')->name('unit-of-measures.trash');
+    Route::get('unit-of-measures/export', 'UnitOfMeasureController@export')->name('unit-of-measures.export');
+    Route::resource('unit-of-measures', 'UnitOfMeasureController');
+
     Route::resource('sales', 'ProductController');
     Route::resource('receivings', 'ProductController');
     Route::resource('adjustments', 'ProductController');
-    Route::resource('unit-of-measures', 'ProductController');
 
     Route::resource('users', 'ProductController');
     Route::get('settings', 'ProductController@index')->name('settings.edit');

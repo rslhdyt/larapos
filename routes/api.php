@@ -25,3 +25,6 @@ Route::put('suppliers/{supplier}/restore', 'SupplierController@restore')->name('
 
 Route::delete('customers/{customer}', 'CustomerController@destroy')->name('customers.destroy');
 Route::put('customers/{customer}/restore', 'CustomerController@restore')->name('customers.restore');
+
+Route::delete('unit-of-measures/{unit_of_measure}', 'UnitOfMeasureController@destroy')->name('unit-of-measures.destroy');
+Route::put('unit-of-measures/{unit_of_measure}/restore', 'UnitOfMeasureController@restore')->name('unit-of-measures.restore');

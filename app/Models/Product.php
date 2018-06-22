@@ -40,7 +40,7 @@ class Product extends Model
      * @var array
      */
     public static $rules = [
-        'barcode' => 'required|unique:products,barcode',
+        'barcode' => 'required|unique:products,barcode|numeric',
         'name' => 'required',
         'uom_id' => 'required|numeric',
         'price' => 'required',
