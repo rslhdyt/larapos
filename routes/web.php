@@ -28,8 +28,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('suppliers/export', 'SupplierController@export')->name('suppliers.export');
     Route::resource('suppliers', 'SupplierController');
     
+    Route::get('customers/trash', 'CustomerController@trash')->name('customers.trash');
+    Route::get('customers/export', 'CustomerController@export')->name('customers.export');
+    Route::resource('customers', 'CustomerController');
+    
     Route::resource('sales', 'ProductController');
-    Route::resource('customers', 'ProductController');
     Route::resource('receivings', 'ProductController');
     Route::resource('adjustments', 'ProductController');
     Route::resource('unit-of-measures', 'ProductController');

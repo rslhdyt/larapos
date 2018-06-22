@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Customer;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CustomerRequest extends FormRequest
@@ -13,7 +14,7 @@ class CustomerRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +24,13 @@ class CustomerRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        $rules = Customer::$rules;
+        $customer = $this->route('customer');
+
+        if ($this->route()->getName() == 'customers.update') {
+            $rules['email'] = 'required|unique:customers,email,' . $customer->id;
+        }
+
+        return $rules;
     }
 }

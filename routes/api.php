@@ -22,3 +22,6 @@ Route::put('products/{product}/restore', 'ProductController@restore')->name('pro
 
 Route::delete('suppliers/{supplier}', 'SupplierController@destroy')->name('suppliers.destroy');
 Route::put('suppliers/{supplier}/restore', 'SupplierController@restore')->name('suppliers.restore');
+
+Route::delete('customers/{customer}', 'CustomerController@destroy')->name('customers.destroy');
+Route::put('customers/{customer}/restore', 'CustomerController@restore')->name('customers.restore');

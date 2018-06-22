@@ -53,6 +53,32 @@ Breadcrumbs::register('suppliers.show', function ($breadcrumbs, $supplier) {
 });
 
 Breadcrumbs::register('suppliers.edit', function ($breadcrumbs, $supplier) {
-    $breadcrumbs->parent('products.index');
-    $breadcrumbs->push('Edit', route('products.edit', $supplier));
+    $breadcrumbs->parent('suppliers.index');
+    $breadcrumbs->push('Edit', route('suppliers.edit', $supplier));
+});
+
+// Customer
+Breadcrumbs::register('customers.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Suppliers', route('customers.index'));
+});
+
+Breadcrumbs::register('customers.trash', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Trashed Suppliers', route('customers.trash'));
+});
+
+Breadcrumbs::register('customers.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('customers.index');
+    $breadcrumbs->push('Create', route('customers.create'));
+});
+
+Breadcrumbs::register('customers.show', function ($breadcrumbs, $customer) {
+    $breadcrumbs->parent('customers.index');
+    $breadcrumbs->push('Show', route('customers.show', $customer));
+});
+
+Breadcrumbs::register('customers.edit', function ($breadcrumbs, $customer) {
+    $breadcrumbs->parent('customers.index');
+    $breadcrumbs->push('Edit', route('customers.edit', $customer));
 });
