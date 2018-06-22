@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::delete('products/{product}', 'ProductController@destroy')->name('products.destroy');
+Route::put('products/{product}/restore', 'ProductController@restore')->name('products.restore');
