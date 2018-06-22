@@ -4,55 +4,53 @@ namespace Tests\Feature;
 
 use Carbon\Carbon;
 use Tests\TestCase;
-use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ProductTest extends TestCase
+class SupplierTest extends TestCase
 {
-
     use RefreshDatabase;
 
     public function testIndex()
     {
-        $products = factory(Product::class, 5)->create();
+        $suppliers = factory(Supplier::class, 5)->create();
 
         $response = $this->actingAs($this->authUser)
-            ->get('products');
+            ->get('suppliers');
 
         $response->assertStatus(200)
-            ->assertViewHas('products');
+            ->assertViewHas('suppliers');
     }
 
     public function testTrash()
     {
-        $products = factory(Product::class, 5)->create(['deleted_at' => Carbon::now()]);
+        $suppliers = factory(Supplier::class, 5)->create(['deleted_at' => Carbon::now()]);
 
         $response = $this->actingAs($this->authUser)
-            ->get('products/trash');
+            ->get('suppliers/trash');
 
         $response->assertStatus(200)
-            ->assertViewHas('products');
+            ->assertViewHas('suppliers');
     }
 
     public function testCreate()
     {
         $response = $this->actingAs($this->authUser)
-            ->get('products/create');
+            ->get('suppliers/create');
 
-        $response->assertStatus(200)
-            ->assertViewHas('unitOfMeasures');
+        $response->assertStatus(200);
     }
 
     public function testStoreSuccess()
     {
-        $data = factory(Product::class)->make()->toArray();
+        $data = factory(Supplier::class)->make()->toArray();
 
         $response = $this->actingAs($this->authUser)
-            ->post('products', $data);
+            ->post('suppliers', $data);
 
         $response->assertStatus(302);
         
-        $this->assertDatabaseHas('products', [
+        $this->assertDatabaseHas('suppliers', [
             'name' => $data['name']
         ]);
     }
@@ -60,7 +58,7 @@ class ProductTest extends TestCase
     public function testStoreValidationFailed()
     {
         $response = $this->actingAs($this->authUser)
-            ->post('products', []);
+            ->post('suppliers', []);
 
         $response->assertStatus(302)
             ->assertSessionHasErrors();
@@ -68,40 +66,39 @@ class ProductTest extends TestCase
     
     public function testShow()
     {
-        $product = factory(Product::class)->create();
+        $supplier = factory(Supplier::class)->create();
 
         $response = $this->actingAs($this->authUser)
-            ->get('products/' . $product->id);
+            ->get('suppliers/' . $supplier->id);
 
         $response->assertStatus(200)
-            ->assertViewHas('product');
+            ->assertViewHas('supplier');
     }
 
     public function testEdit()
     {
-        $product = factory(Product::class)->create();
+        $supplier = factory(Supplier::class)->create();
 
         $response = $this->actingAs($this->authUser)
-            ->get('products/' . $product->id . '/edit');
+            ->get('suppliers/' . $supplier->id . '/edit');
 
         $response->assertStatus(200)
-            ->assertViewHas('product')
-            ->assertViewHas('unitOfMeasures');
+            ->assertViewHas('supplier');
     }
 
     public function testUpdate()
     {
-        $product = factory(Product::class)->create();
-        $data = $product->toArray();
-        $data['name'] = 'updated product';
+        $supplier = factory(Supplier::class)->create();
+        $data = $supplier->toArray();
+        $data['name'] = 'updated supplier';
 
         $response = $this->actingAs($this->authUser)
-            ->put('products/' . $product->id, $data);
+            ->put('suppliers/' . $supplier->id, $data);
 
         $response->assertStatus(302);
 
-        $this->assertDatabaseHas('products', [
-            'name' => 'updated product'
+        $this->assertDatabaseHas('suppliers', [
+            'name' => 'updated supplier'
         ]);
     }
 }

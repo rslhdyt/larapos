@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use App\Http\Requests\SupplierRequest;
 
 class SupplierController extends Controller
 {
@@ -12,9 +13,13 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $suppliers = ($q = $request->get('q')) ? Supplier::search($q) : Supplier::query();
+        $suppliers = $suppliers->paginate();
+
+        return view('suppliers.index')
+            ->withSuppliers($suppliers);
     }
 
     /**
@@ -24,7 +29,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('suppliers.create');
     }
 
     /**
@@ -33,9 +38,12 @@ class SupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SupplierRequest $request)
     {
-        //
+        $supplier = Supplier::create($request->all());
+
+        return redirect()->route('suppliers.index')
+            ->withMessageSuccess('Supplier created.');
     }
 
     /**
@@ -46,7 +54,8 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        //
+        return view('suppliers.show')
+            ->withSupplier($supplier);
     }
 
     /**
@@ -57,29 +66,44 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+        return view('suppliers.edit')
+            ->withSupplier($supplier);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\SupplierRequest  $request
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update(SupplierRequest $request, Supplier $supplier)
     {
-        //
+        $supplier->update($request->all());
+
+        return redirect()->route('suppliers.index')
+            ->withMessageSuccess('Supplier updated.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Display a listing of the resource.
      *
-     * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Supplier $supplier)
+    public function trash(Request $request)
     {
-        //
+        $searchResultIds = Supplier::search($request->get('q'))->raw()['ids'];
+        $suppliers = $suppliers = ($q = $request->get('q')) ? Supplier::whereIn('id', $searchResultIds) : Supplier::query();
+        $suppliers = $suppliers->onlyTrashed()->paginate();
+
+        return view('suppliers.trash')
+            ->withSuppliers($suppliers);
+    }
+
+    public function export(Request $request)
+    {
+        return Excel::download(new SupplierExport([
+            'q' => $request->get('q'),
+        ]), 'suppliers.xlsx');
     }
 }

@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::delete('products/{product}', 'ProductController@destroy')->name('products.destroy');
 Route::put('products/{product}/restore', 'ProductController@restore')->name('products.restore');
+
+Route::delete('suppliers/{supplier}', 'SupplierController@destroy')->name('suppliers.destroy');
+Route::put('suppliers/{supplier}/restore', 'SupplierController@restore')->name('suppliers.restore');

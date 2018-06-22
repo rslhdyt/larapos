@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Supplier;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SupplierRequest extends FormRequest
@@ -13,7 +14,7 @@ class SupplierRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +24,13 @@ class SupplierRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        $rules = Supplier::$rules;
+        $supplier = $this->route('supplier');
+
+        if ($this->route()->getName() == 'suppliers.update') {
+            $rules['email'] = 'required|unique:suppliers,email,' . $supplier->id;
+        }
+
+        return $rules;
     }
 }

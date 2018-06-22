@@ -24,7 +24,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('products/export', 'ProductController@export')->name('products.export');
     Route::resource('products', 'ProductController');
 
-    Route::resource('suppliers', 'ProductController');
+    Route::get('suppliers/trash', 'SupplierController@trash')->name('suppliers.trash');
+    Route::get('suppliers/export', 'SupplierController@export')->name('suppliers.export');
+    Route::resource('suppliers', 'SupplierController');
     
     Route::resource('sales', 'ProductController');
     Route::resource('customers', 'ProductController');
