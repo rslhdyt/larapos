@@ -108,3 +108,29 @@ Breadcrumbs::register('unit-of-measures.edit', function ($breadcrumbs, $unitOfMe
     $breadcrumbs->parent('unit-of-measures.index');
     $breadcrumbs->push('Edit', route('unit-of-measures.edit', $unitOfMeasure));
 });
+
+// User
+Breadcrumbs::register('users.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Users', route('users.index'));
+});
+
+Breadcrumbs::register('users.trash', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Trashed Users', route('users.trash'));
+});
+
+Breadcrumbs::register('users.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('users.index');
+    $breadcrumbs->push('Create', route('users.create'));
+});
+
+Breadcrumbs::register('users.show', function ($breadcrumbs, $user) {
+    $breadcrumbs->parent('users.index');
+    $breadcrumbs->push('Show', route('users.show', $user));
+});
+
+Breadcrumbs::register('users.edit', function ($breadcrumbs, $user) {
+    $breadcrumbs->parent('users.index');
+    $breadcrumbs->push('Edit', route('users.edit', $user));
+});

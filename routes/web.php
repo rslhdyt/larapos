@@ -40,6 +40,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('receivings', 'ProductController');
     Route::resource('adjustments', 'ProductController');
 
-    Route::resource('users', 'ProductController');
+    Route::get('users/trash', 'UserController@trash')->name('users.trash');
+    Route::get('users/export', 'UserController@export')->name('users.export');
+    Route::resource('users', 'UserController');
+
     Route::get('settings', 'ProductController@index')->name('settings.edit');
 });

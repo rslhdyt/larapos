@@ -28,3 +28,6 @@ Route::put('customers/{customer}/restore', 'CustomerController@restore')->name('
 
 Route::delete('unit-of-measures/{unit_of_measure}', 'UnitOfMeasureController@destroy')->name('unit-of-measures.destroy');
 Route::put('unit-of-measures/{unit_of_measure}/restore', 'UnitOfMeasureController@restore')->name('unit-of-measures.restore');
+
+Route::delete('users/{user}', 'UserController@destroy')->name('users.destroy');
+Route::put('users/{user}/restore', 'UserController@restore')->name('users.restore');
