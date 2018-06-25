@@ -37,4 +37,17 @@ class SupplierController extends Controller
             'message' => 'Supplier restored.'
         ]);
     }
+
+    /**
+     * Search a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $suppliers = ($q = $request->get('q')) ? Supplier::search($q) : Supplier::query();
+        $suppliers = $suppliers->get();
+
+        return response()->json($suppliers);
+    }
 }

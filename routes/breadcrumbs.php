@@ -134,3 +134,24 @@ Breadcrumbs::register('users.edit', function ($breadcrumbs, $user) {
     $breadcrumbs->parent('users.index');
     $breadcrumbs->push('Edit', route('users.edit', $user));
 });
+
+// Receiving
+Breadcrumbs::register('receivings.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Receivings', route('receivings.index'));
+});
+
+Breadcrumbs::register('receivings.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('receivings.index');
+    $breadcrumbs->push('Create', route('receivings.create'));
+});
+
+Breadcrumbs::register('receivings.show', function ($breadcrumbs, $receiving) {
+    $breadcrumbs->parent('receivings.index');
+    $breadcrumbs->push('Show', route('receivings.show', $receiving));
+});
+
+Breadcrumbs::register('receivings.edit', function ($breadcrumbs, $receiving) {
+    $breadcrumbs->parent('receivings.index');
+    $breadcrumbs->push('Edit', route('receivings.edit', $receiving));
+});

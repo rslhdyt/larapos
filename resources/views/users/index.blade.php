@@ -77,7 +77,7 @@
                                 @empty
                                     <tr class="table-info">
                                         <td colspan="4" align="center">Users empty or not found.</td>
-                                    <tr>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>

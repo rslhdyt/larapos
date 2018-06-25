@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Receiving;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ReceivingRequest extends FormRequest
@@ -13,7 +14,16 @@ class ReceivingRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
+    }
+
+    public function all($attribute = [])
+    {
+        $data = parent::all();
+
+        $data['user_id'] = $this->user()->id;
+
+        return $data;
     }
 
     /**
@@ -23,8 +33,13 @@ class ReceivingRequest extends FormRequest
      */
     public function rules()
     {
+        return Receiving::$rules;
+    }
+
+    public function messages()
+    {
         return [
-            //
+            'items.min' => 'Please add 1 or more item product.'
         ];
     }
 }

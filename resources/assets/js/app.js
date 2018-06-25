@@ -10,8 +10,10 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import VueSweetalert2 from 'vue-sweetalert2';
+import VeeValidate from 'vee-validate';
 
 Vue.use(VueSweetalert2);
+Vue.use(VeeValidate);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -22,6 +24,36 @@ Vue.use(VueSweetalert2);
 // Vue.component('example', require('./components/Example.vue'));
 Vue.component('delete-action', require('./components/DeleteAction.vue'));
 Vue.component('restore-action', require('./components/RestoreAction.vue'));
+Vue.component('form-receiving', require('./components/FormReceiving.vue'));
+
+// setup axios interceptor
+window.axios.interceptors.response.use(function (response) {
+    // Do something before request is sent
+    return response;
+}, function (error) {
+
+    if (error.response.status == 422) {
+        let errorMessages = _.map(error.response.data.errors, err => {
+            return err[0]
+        });
+
+        Vue.swal({
+            title: 'Validation Failed!',
+            html: errorMessages.join('<br>'),
+            type: 'error',
+        })
+    } else if (error.response.status == 500) {
+        Vue.swal({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+        })
+    } else if (error.response.status == 401) {
+        // window.location = '/login'
+    }
+
+    return Promise.reject(error.response);
+});
 
 /*
  * By extending the Vue prototype with a new '$bus' property

@@ -8,6 +8,18 @@ use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $products = ($q = $request->get('q')) ? Product::search($q) : Product::query();
+        $products = $products->paginate();
+
+        return response()->json($products);
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -37,5 +49,18 @@ class ProductController extends Controller
         return response()->json([
             'message' => 'Product restored.'
         ]);
+    }
+
+    /**
+     * Search a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $products = ($q = $request->get('q')) ? Product::search($q) : Product::query();
+        $products = $products->get();
+
+        return response()->json($products);
     }
 }

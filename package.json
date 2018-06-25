@@ -16,7 +16,9 @@
         "jquery": "^3.1.1",
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
+        "vee-validate": "^2.1.0-beta.2",
         "vue": "^2.1.10",
-        "vue-sweetalert2": "^1.4.2"
+        "vue-sweetalert2": "^1.4.2",
+        "vue-typeahead": "^2.3.2"
     }
 }

@@ -81,7 +81,7 @@
                                 @empty
                                     <tr class="table-info">
                                         <td colspan="6" align="center">Suppliers empty or not found.</td>
-                                    <tr>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>

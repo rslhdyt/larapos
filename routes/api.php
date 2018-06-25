@@ -17,9 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('products/search', 'ProductController@search')->name('products.search');
 Route::delete('products/{product}', 'ProductController@destroy')->name('products.destroy');
 Route::put('products/{product}/restore', 'ProductController@restore')->name('products.restore');
 
+Route::get('suppliers/search', 'SupplierController@search')->name('suppliers.search');
 Route::delete('suppliers/{supplier}', 'SupplierController@destroy')->name('suppliers.destroy');
 Route::put('suppliers/{supplier}/restore', 'SupplierController@restore')->name('suppliers.restore');
 
@@ -31,3 +33,7 @@ Route::put('unit-of-measures/{unit_of_measure}/restore', 'UnitOfMeasureControlle
 
 Route::delete('users/{user}', 'UserController@destroy')->name('users.destroy');
 Route::put('users/{user}/restore', 'UserController@restore')->name('users.restore');
+
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::post('receivings', 'ReceivingController@store')->name('receivings.store');
+});
