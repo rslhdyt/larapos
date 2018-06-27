@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Adjustment;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdjustmentRequest extends FormRequest
+class ProductStockRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,16 +13,7 @@ class AdjustmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
-    }
-
-    public function all($attribute = [])
-    {
-        $data = parent::all();
-
-        $data['user_id'] = $this->user()->id;
-
-        return $data;
+        return false;
     }
 
     /**
@@ -33,6 +23,8 @@ class AdjustmentRequest extends FormRequest
      */
     public function rules()
     {
-        return Adjustment::$rules;
+        return [
+            //
+        ];
     }
 }

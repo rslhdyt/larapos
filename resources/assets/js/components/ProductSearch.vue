@@ -35,8 +35,9 @@ export default {
 
             // The data that would be sent by request
             // (optional)
-            // data: {
-            // },
+            data: {
+                status: 'active'
+            },
 
             // Limit the number of items which is shown at the list
             // (optional)
@@ -70,8 +71,9 @@ export default {
         // The callback function which is triggered when the response data are received
         // (optional)
         prepareResponseData (data) {
-            console.log(data)
-            return data
+            return _.map(data, d => {
+                return d
+            })
         },
 
         activeClass (index) {

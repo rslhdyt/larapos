@@ -25,6 +25,7 @@ Vue.use(VeeValidate);
 Vue.component('delete-action', require('./components/DeleteAction.vue'));
 Vue.component('restore-action', require('./components/RestoreAction.vue'));
 Vue.component('form-receiving', require('./components/FormReceiving.vue'));
+Vue.component('form-adjustment', require('./components/FormAdjustment.vue'));
 
 // setup axios interceptor
 window.axios.interceptors.response.use(function (response) {

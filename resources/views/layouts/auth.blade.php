@@ -1,7 +1,9 @@
 @include('partials.html-header')
 
 <body class="bg-dark">
-    @yield('main-content')
+    <div id="app">
+        @yield('main-content')
+    </div>
     
     @include('partials.scripts')
 </body>

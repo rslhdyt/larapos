@@ -36,4 +36,5 @@ Route::put('users/{user}/restore', 'UserController@restore')->name('users.restor
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('receivings', 'ReceivingController@store')->name('receivings.store');
+    Route::post('adjustments', 'AdjustmentController@store')->name('adjustments.store');
 });

@@ -155,3 +155,24 @@ Breadcrumbs::register('receivings.edit', function ($breadcrumbs, $receiving) {
     $breadcrumbs->parent('receivings.index');
     $breadcrumbs->push('Edit', route('receivings.edit', $receiving));
 });
+
+// Adjustment
+Breadcrumbs::register('adjustments.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Adjustments', route('adjustments.index'));
+});
+
+Breadcrumbs::register('adjustments.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('adjustments.index');
+    $breadcrumbs->push('Create', route('adjustments.create'));
+});
+
+Breadcrumbs::register('adjustments.show', function ($breadcrumbs, $adjustment) {
+    $breadcrumbs->parent('adjustments.index');
+    $breadcrumbs->push('Show', route('adjustments.show', $adjustment));
+});
+
+Breadcrumbs::register('adjustments.edit', function ($breadcrumbs, $adjustment) {
+    $breadcrumbs->parent('adjustments.index');
+    $breadcrumbs->push('Edit', route('adjustments.edit', $adjustment));
+});

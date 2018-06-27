@@ -12777,6 +12777,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vee_validate__["a" /* default */]);
 Vue.component('delete-action', __webpack_require__(83));
 Vue.component('restore-action', __webpack_require__(86));
 Vue.component('form-receiving', __webpack_require__(89));
+Vue.component('form-adjustment', __webpack_require__(139));
 
 // setup axios interceptor
 window.axios.interceptors.response.use(function (response) {
@@ -42948,7 +42949,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    // props: ['receiving'],
     components: {
         ProductSearch: __WEBPACK_IMPORTED_MODULE_0__ProductSearch_vue___default.a
     },
@@ -43151,8 +43151,9 @@ Vue.prototype.$http = axios;
 
             // The data that would be sent by request
             // (optional)
-            // data: {
-            // },
+            data: {
+                status: 'active'
+            },
 
             // Limit the number of items which is shown at the list
             // (optional)
@@ -43188,8 +43189,9 @@ Vue.prototype.$http = axios;
         // The callback function which is triggered when the response data are received
         // (optional)
         prepareResponseData: function prepareResponseData(data) {
-            console.log(data);
-            return data;
+            return _.map(data, function (d) {
+                return d;
+            });
         },
         activeClass: function activeClass(index) {
             return {
@@ -44906,6 +44908,450 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-65b52bd5", module.exports)
+  }
+}
+
+/***/ }),
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(12)
+/* script */
+var __vue_script__ = __webpack_require__(140)
+/* template */
+var __vue_template__ = __webpack_require__(141)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/FormAdjustment.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1c4766c8", Component.options)
+  } else {
+    hotAPI.reload("data-v-1c4766c8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 140 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ProductSearch_vue__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ProductSearch_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ProductSearch_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        ProductSearch: __WEBPACK_IMPORTED_MODULE_0__ProductSearch_vue___default.a
+    },
+    data: function data() {
+        return {
+            form: {},
+            items: []
+        };
+    },
+
+    methods: {
+        addItem: function addItem(item) {
+            var ids = _.map(this.items, 'id');
+
+            if (!_.includes(ids, item.id)) {
+                this.$set(item, 'product_id', item.id);
+                this.$set(item, 'diff', 0);
+
+                this.items.push(item);
+            } else {
+                var index = _.findIndex(this.items, function (i) {
+                    return i.id == item.id;
+                });
+
+                var currentProduct = this.items[index];
+
+                currentProduct.adjustment = currentProduct.adjustment + 1;
+            }
+        },
+        removeItem: function removeItem(item) {
+            var index = _.findIndex(this.items, function (i) {
+                return i.id == item.id;
+            });
+
+            var currentProduct = this.items[index];
+
+            if (currentProduct.adjustment - 1 == 0) {
+                this.deleteItem(currentProduct);
+            } else {
+                currentProduct.adjustment = currentProduct.adjustment - 1;
+            }
+        },
+        deleteItem: function deleteItem(item) {
+            var index = _.findIndex(this.items, function (i) {
+                return i.id == item.id;
+            });
+
+            this.items.splice(index, 1);
+        },
+        clearForm: function clearForm() {
+            this.form = {};
+            this.items = [];
+        },
+        validateForm: function validateForm() {
+            var that = this;
+
+            this.$validator.validateAll().then(function (result) {
+                if (result) {
+                    that.store();
+                }
+            });
+        },
+
+
+        // main action
+        store: function store() {
+            var that = this;
+
+            var formRequest = this.form;
+            formRequest.items = this.items;
+
+            axios.post('/api/adjustments', formRequest).then(function (res) {
+                that.$swal({
+                    title: 'Success!',
+                    text: res.data.message,
+                    type: 'success',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(function (swalRes) {
+                    window.location = '/adjustments';
+                });
+
+                that.clearForm();
+            });
+        }
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        var that = this;
+
+        this.$bus.$on('productSelected', function (event) {
+            var item = event.product;
+
+            if (item) {
+                _this.addItem(item);
+            }
+        });
+    }
+});
+
+/***/ }),
+/* 141 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row mb-5" }, [
+    _c("div", { staticClass: "col-md-8 col-sm-12" }, [
+      _c("div", { staticClass: "card mb-3" }, [
+        _c("div", { staticClass: "card-header" }, [_vm._v("Adjustment Items")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-body p-0" },
+          [
+            _c("product-search", { staticClass: "p-2" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "table-responsive" }, [
+              _c("table", { staticClass: "table mb-0" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  [
+                    _vm._l(_vm.items, function(item, key) {
+                      return _c("tr", { key: key }, [
+                        _c("td", [_vm._v(_vm._s(key + 1))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(item.name))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "validate",
+                                rawName: "v-validate",
+                                value: "required|numeric",
+                                expression: "'required|numeric'"
+                              },
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: item.adjustment,
+                                expression: "item.adjustment"
+                              }
+                            ],
+                            class: {
+                              "form-control": true,
+                              "form-control-sm": true,
+                              "is-invalid": _vm.errors.has(
+                                "adjustment at row " + (key + 1)
+                              )
+                            },
+                            attrs: {
+                              "data-vv-name": "adjustment at row " + (key + 1),
+                              type: "number",
+                              placeholder: "Actual quantity stock"
+                            },
+                            domProps: { value: item.adjustment },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  item,
+                                  "adjustment",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "invalid-feedback" }, [
+                            _vm._v(
+                              _vm._s(
+                                _vm.errors.first(
+                                  "adjustment at row " + (key + 1)
+                                )
+                              )
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { attrs: { align: "center" } }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-sm btn-danger",
+                              on: {
+                                click: function($event) {
+                                  _vm.deleteItem(item)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-trash" })]
+                          )
+                        ])
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "tr",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: !_vm.items.length,
+                            expression: "!items.length"
+                          }
+                        ],
+                        staticClass: "table-info"
+                      },
+                      [
+                        _c("td", { attrs: { colspan: "5", align: "center" } }, [
+                          _vm._v("Adjustment items empty.")
+                        ])
+                      ]
+                    )
+                  ],
+                  2
+                )
+              ])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-footer small text-muted" }, [
+          _vm._v(
+            "\n                Total Item : " +
+              _vm._s(_vm.items.length) +
+              "\n            "
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-4 col-sm-12" }, [
+      _c("div", { staticClass: "card mb-3" }, [
+        _c("div", { staticClass: "card-header" }, [_vm._v("Adjustment Data")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "comments" } }, [_vm._v("Comments")]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.comments,
+                  expression: "form.comments"
+                }
+              ],
+              staticClass: "form-control",
+              domProps: { value: _vm.form.comments },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "comments", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "invalid-feedback" })
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.validateForm($event)
+                }
+              }
+            },
+            [_vm._v("Save")]
+          ),
+          _vm._v(" "),
+          _c("a", { staticClass: "btn btn-link", attrs: { href: "/" } }, [
+            _vm._v("Cancel")
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { width: "10%" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Product")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "30%" } }, [_vm._v("Adjustment")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "10%", align: "center" } }, [
+          _vm._v("Action")
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1c4766c8", module.exports)
   }
 }
 
