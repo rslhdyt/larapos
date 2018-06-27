@@ -80,6 +80,10 @@ class GenerateCRUD extends Command
             'name' => $testPath
         ]);
 
+        Artisan::call('make:test', [
+            'name' => 'Api/' . $testPath
+        ]);
+
         // create view folder
         if (!file_exists($viewPath)) {
             mkdir($viewPath, 0755, true);
