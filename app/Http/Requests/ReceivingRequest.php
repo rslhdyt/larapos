@@ -33,7 +33,13 @@ class ReceivingRequest extends FormRequest
      */
     public function rules()
     {
-        return Receiving::$rules;
+        $rules = Receiving::$rules;
+
+        if ($this->route()->getName() == 'receivings.update') {
+            $rules = array_only($rules, ['supplier_id']);
+        }
+
+        return $rules;
     }
 
     public function messages()

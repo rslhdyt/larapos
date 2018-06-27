@@ -24,16 +24,4 @@ class ReceivingController extends Controller
             'message' => 'Receiving created.',
         ]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Receiving  $receiving
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Receiving $receiving)
-    {
-        //
-    }
 }

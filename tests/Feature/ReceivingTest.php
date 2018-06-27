@@ -51,4 +51,15 @@ class ReceivingTest extends TestCase
         $response->assertStatus(200)
             ->assertViewHas('receiving');
     }
+
+    public function testPrint()
+    {
+        $receiving = factory(Receiving::class)->create();
+
+        $response = $this->actingAs($this->authUser)
+            ->get('receivings/' . $receiving->id . '/print');
+
+        $response->assertStatus(200)
+            ->assertViewHas('receiving');
+    }
 }

@@ -74,7 +74,6 @@
 import ProductSearch from './ProductSearch.vue'
 
 export default {
-    // props: ['receiving'],
     components: {
         ProductSearch
     },

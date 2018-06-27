@@ -54,6 +54,11 @@ class Receiving extends Model
         return $this->items->count();
     }
 
+    public function getTotalPriceAttribute()
+    {
+        return $this->items->sum('subtotalPrice');
+    }
+
     public function items()
     {
         return $this->hasMany(ReceivingItem::class);

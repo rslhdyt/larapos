@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Observers\ReceivingItemObserver;
 
 class ReceivingItem extends Model
 {
@@ -16,4 +17,23 @@ class ReceivingItem extends Model
         'price',
         'quantity',
     ];
+
+    public function getsubtotalPriceAttribute()
+    {
+        return $this->quantity * $this->price;
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class)->withDefault([
+            'name' => '-',
+        ]);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        ReceivingItem::observe(new ReceivingItemObserver);
+    }
 }
