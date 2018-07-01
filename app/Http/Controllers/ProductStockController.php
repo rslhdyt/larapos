@@ -14,7 +14,8 @@ class ProductStockController extends Controller
      */
     public function index()
     {
-        //
+        return view('product_stocks.index')
+            ->withProductStocks(ProductStock::paginate());
     }
 
     /**

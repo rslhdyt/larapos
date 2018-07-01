@@ -19,8 +19,9 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->integer('uom_id');
-            $table->decimal('price', 12, 2);
-            $table->integer('quantity');
+            $table->decimal('cost_price', 12, 2);
+            $table->decimal('unit_price', 12, 2);
+            $table->integer('minimal_stock');
             $table->timestamps();
             $table->softDeletes();
         });
