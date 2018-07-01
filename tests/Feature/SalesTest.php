@@ -7,13 +7,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SalesTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testExample()
+    use RefreshDatabase;
+
+    public function testIndex()
     {
-        $this->assertTrue(true);
+        $response = $this->actingAs($this->authUser)
+            ->get('sales/create');
+
+        $response->assertStatus(200);
     }
 }
