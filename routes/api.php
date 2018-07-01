@@ -17,6 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('payment-methods/all', 'PaymentMethodController@all')->name('payment-methods.all');
+
 Route::get('products/search', 'ProductController@search')->name('products.search');
 Route::delete('products/{product}', 'ProductController@destroy')->name('products.destroy');
 Route::put('products/{product}/restore', 'ProductController@restore')->name('products.restore');
@@ -25,6 +27,7 @@ Route::get('suppliers/search', 'SupplierController@search')->name('suppliers.sea
 Route::delete('suppliers/{supplier}', 'SupplierController@destroy')->name('suppliers.destroy');
 Route::put('suppliers/{supplier}/restore', 'SupplierController@restore')->name('suppliers.restore');
 
+Route::get('customers/search', 'CustomerController@search')->name('customers.search');
 Route::delete('customers/{customer}', 'CustomerController@destroy')->name('customers.destroy');
 Route::put('customers/{customer}/restore', 'CustomerController@restore')->name('customers.restore');
 
@@ -37,4 +40,6 @@ Route::put('users/{user}/restore', 'UserController@restore')->name('users.restor
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('receivings', 'ReceivingController@store')->name('receivings.store');
     Route::post('adjustments', 'AdjustmentController@store')->name('adjustments.store');
+
+    Route::post('sales', 'SalesController@store')->name('sales.store');
 });

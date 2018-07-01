@@ -9,9 +9,14 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+// plugins
 import VueSweetalert2 from 'vue-sweetalert2';
 import VeeValidate from 'vee-validate';
+import VueCurrencyFilter from 'vue-currency-filter'
 
+Vue.use(VueCurrencyFilter, {
+    symbol: 'Rp'
+});
 Vue.use(VueSweetalert2);
 Vue.use(VeeValidate);
 
@@ -26,6 +31,7 @@ Vue.component('delete-action', require('./components/DeleteAction.vue'));
 Vue.component('restore-action', require('./components/RestoreAction.vue'));
 Vue.component('form-receiving', require('./components/FormReceiving.vue'));
 Vue.component('form-adjustment', require('./components/FormAdjustment.vue'));
+Vue.component('form-sales', require('./components/FormSales.vue'));
 
 // setup axios interceptor
 window.axios.interceptors.response.use(function (response) {

@@ -5,13 +5,13 @@
         <span class="nav-link-text">Dashboard</span>
         </a>
     </li>
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sales">
         <a class="nav-link" href="{{ route('sales.create') }}">
             <i class="fa fa-fw fa-shopping-cart"></i>
             <span class="nav-link-text">Sales</span>
         </a>
     </li>
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Inventory">
         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-building-o"></i>
             <span class="nav-link-text">Inventory</span>
@@ -23,9 +23,12 @@
             <li>
                 <a href="{{ route('adjustments.index') }}">Adjustment</a>
             </li>
+            <li>
+                <a href="{{ route('product-stocks.index') }}">Product Stocks</a>
+            </li>
         </ul>
     </li>
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="master">
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Master">
         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapse-master" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-gear"></i>
             <span class="nav-link-text">Master</span>

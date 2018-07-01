@@ -1,6 +1,6 @@
 <template>
     <div class="input-group mb-3">
-        <input id="search-box" type="text" class="form-control" placeholder="Search product..."
+        <input id="search-box" type="text" class="form-control" placeholder="Search customer..."
             autocomplete="off"
             v-model="query"
             @keydown.down="down"
@@ -10,13 +10,13 @@
             @input="update"/>
             <!-- @blur="reset" -->
 
-        <ul v-show="hasItems" class="list-group" style="position: absolute;top: 45px;width: calc(100% - 158px);">
+        <ul v-show="hasItems" class="list-group" style="position: absolute;top: 38px;width: calc(100% - 158px);">
             <a href="#" v-for="(item, $item) in items" :key="$item" :class="activeClass($item)" @mousedown="hit" @mousemove="setActive($item)" v-text="item.name" class="list-group-item list-group-item-action"></a>
         </ul>
 
-        <!-- <div class="input-group-append">
-            <button class="btn btn-primary" type="button">Advance Search</button>
-        </div> -->
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="button"><i class="fa fa-plus"></i> Create</button>
+        </div>
     </div>
 </template>
 
@@ -31,7 +31,7 @@ export default {
         return {
             // The source url
             // (required)
-            src: '/api/products/search',
+            src: '/api/customers/search',
 
             // The data that would be sent by request
             // (optional)
@@ -61,11 +61,13 @@ export default {
         // The callback function which is triggered when the user hits on an item
         // (required)
         onHit (item) {
-            this.$bus.$emit('productSelected', {
-                product: item
+            this.$bus.$emit('customerSelected', {
+                customer: item
             })
 
             this.reset()
+
+            this.query = item.name
         },
 
         // The callback function which is triggered when the response data are received
@@ -80,10 +82,14 @@ export default {
             return {
                 'active': this.current === index
             }
+        },
+        mounted () {
+            const that = this
+
+            this.$bus.$on('inputCustomerCleared', event => {
+                that.reset()
+            })
         }
-    },
-    mounted() {
-        document.getElementById('search-box').focus()
     }
 }
 </script>

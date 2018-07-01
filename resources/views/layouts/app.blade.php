@@ -1,6 +1,6 @@
 @include('partials.html-header')
 
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<body class="fixed-nav sticky-footer bg-dark {{ in_array(Route::current()->getName(), ['sales.create']) ? 'sidenav-toggled' : '' }}" id="page-top">
 
     <div id="app">
         <!-- Navigation-->

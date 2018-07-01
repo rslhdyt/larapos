@@ -37,4 +37,17 @@ class CustomerController extends Controller
             'message' => 'Customer restored.'
         ]);
     }
+
+    /**
+     * Search a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $customers = ($q = $request->get('q')) ? Customer::search($q) : Customer::query();
+        $customers = $customers->get();
+
+        return response()->json($customers);
+    }
 }

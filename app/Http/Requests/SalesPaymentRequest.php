@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductRequest extends FormRequest
+class SalesPaymentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +13,7 @@ class ProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,13 +23,8 @@ class ProductRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = Product::$rules;
-        $product = $this->route('product');
-
-        if ($this->route()->getName() == 'products.update') {
-            $rules['barcode'] = 'required|unique:products,barcode,' . $product->id;
-        }
-
-        return $rules;
+        return [
+            //
+        ];
     }
 }

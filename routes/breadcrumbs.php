@@ -176,3 +176,15 @@ Breadcrumbs::register('adjustments.edit', function ($breadcrumbs, $adjustment) {
     $breadcrumbs->parent('adjustments.index');
     $breadcrumbs->push('Edit', route('adjustments.edit', $adjustment));
 });
+
+// Sales
+Breadcrumbs::register('sales.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Create', route('sales.create'));
+});
+
+// Sales
+Breadcrumbs::register('product-stocks.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Product Stocks', route('product-stocks.index'));
+});

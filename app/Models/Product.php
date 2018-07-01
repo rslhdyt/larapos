@@ -21,8 +21,9 @@ class Product extends Model
         'name',
         'description',
         'uom_id',
-        'price',
-        'quantity',
+        'cost_price',
+        'unit_price',
+        'minimal_stock',
     ];
 
     /**
@@ -43,7 +44,9 @@ class Product extends Model
         'barcode' => 'required|unique:products,barcode|numeric',
         'name' => 'required',
         'uom_id' => 'required|numeric',
-        'price' => 'required',
+        'cost_price' => 'required',
+        'unit_price' => 'required',
+        'minimal_stock' => 'required|numeric',
     ];
 
     /**

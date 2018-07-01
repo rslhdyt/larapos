@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('unit-of-measures/export', 'UnitOfMeasureController@export')->name('unit-of-measures.export');
     Route::resource('unit-of-measures', 'UnitOfMeasureController');
 
-    Route::resource('sales', 'ProductController');
+    Route::get('sales/create', 'SalesController@create')->name('sales.create');
 
     Route::get('users/trash', 'UserController@trash')->name('users.trash');
     Route::get('users/export', 'UserController@export')->name('users.export');
@@ -51,4 +51,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('adjustments', 'AdjustmentController');
 
     Route::get('settings', 'ProductController@index')->name('settings.edit');
+
+    Route::get('product-stocks', 'ProductStockController@index')->name('product-stocks.index');
 });

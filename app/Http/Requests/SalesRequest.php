@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Sales;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SalesRequest extends FormRequest
@@ -13,7 +14,16 @@ class SalesRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
+    }
+
+    public function all($attribute = [])
+    {
+        $data = parent::all();
+
+        $data['cashier_id'] = $this->user()->id;
+
+        return $data;
     }
 
     /**
@@ -23,8 +33,6 @@ class SalesRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        return Sales::$rules;
     }
 }

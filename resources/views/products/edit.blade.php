@@ -43,6 +43,11 @@
                             <input name="price" value="{{ old('price', $product->price) }}" type="text" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" id="price" placeholder="Product price">
                             <div class="invalid-feedback">{{ $errors->first('price') }}</div>
                         </div>
+                        <div class="form-group">
+                            <label for="minimal_stock">Minimal Stock *</label>
+                            <input name="minimal_stock" value="{{ old('minimal_stock', $product->minimal_stock) }}" type="text" class="form-control {{ $errors->has('minimal_stock') ? 'is-invalid' : '' }}" id="minimal_stock" placeholder="Initial product minimal_stock">
+                            <div class="invalid-feedback">{{ $errors->first('minimal_stock') }}</div>
+                        </div>
 
                         <button type="submit" class="btn btn-primary">Update</button>
                         <a href="{{ route('products.index') }}" class="btn btn-link">Cancel</a>
