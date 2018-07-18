@@ -3,10 +3,10 @@
 namespace Tests\Feature\Api;
 
 use App\Models\Sales;
-use Tests\ApiTestCase;
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class SalesTest extends ApiTestCase
+class SalesTest extends TestCase
 {
     use RefreshDatabase;
 

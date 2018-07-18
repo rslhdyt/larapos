@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Tests\Traits\AuthData;
 use Laravel\Dusk\TestCase as BaseTestCase;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
@@ -9,7 +10,15 @@ use Facebook\WebDriver\Remote\DesiredCapabilities;
 
 abstract class DuskTestCase extends BaseTestCase
 {
-    use CreatesApplication;
+    use AuthData,
+        CreatesApplication;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->prepareAuth();
+    }
 
     /**
      * Prepare for Dusk test execution.

@@ -58,7 +58,7 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Barcode</th>
-                                    <th>Price</th>
+                                    <th>Unit Price</th>
                                     <th>Stock</th>
                                     <th>Actions</th>
                                 </tr>
@@ -69,7 +69,7 @@
                                         <td>{{ $products->firstItem() + $key }}</td>
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->barcode }}</td>
-                                        <td>{{ currency($product->price) }}</td>
+                                        <td>{{ currency($product->unit_price) }}</td>
                                         <td>{{ $product->quantity . ' ' . $product->uom->abbreviation  }}</td>
                                         <td>
                                             <a href="{{ route('products.edit', $product) }}"><i class="fa fa-pencil"></i></a>
