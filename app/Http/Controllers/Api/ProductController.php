@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = ($q = $request->get('q')) ? Product::search($q) : Product::query();
-        $products = $products->paginate();
+        $products = $products->with(['uom', 'stock'])->paginate();
 
         return response()->json($products);
     }
