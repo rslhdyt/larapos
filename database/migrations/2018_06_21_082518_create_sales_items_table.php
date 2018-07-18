@@ -14,7 +14,7 @@ class CreateSalesItemsTable extends Migration
     public function up()
     {
         Schema::create('sales_items', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->integer('sales_id');
             $table->integer('product_id');
             $table->decimal('price', 12, 2);

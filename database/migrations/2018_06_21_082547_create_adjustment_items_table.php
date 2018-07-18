@@ -14,7 +14,7 @@ class CreateAdjustmentItemsTable extends Migration
     public function up()
     {
         Schema::create('adjustment_items', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->integer('adjustment_id');
             $table->integer('product_id');
             $table->integer('adjustment');

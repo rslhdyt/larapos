@@ -14,7 +14,7 @@ class CreateReceivingItemsTable extends Migration
     public function up()
     {
         Schema::create('receiving_items', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
              $table->integer('receiving_id');
             $table->integer('product_id');
             $table->decimal('price', 12, 2);
