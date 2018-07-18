@@ -68,8 +68,8 @@ class Product extends Model
     public function uom()
     {
         return $this->belongsTo(UnitOfMeasure::class)->withDefault([
-            'name' => '-',
-            'abbreviation' => '-',
+            'name' => null,
+            'abbreviation' => null,
         ]);
     }
     

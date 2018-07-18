@@ -70,7 +70,7 @@
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->barcode }}</td>
                                         <td>{{ currency($product->unit_price) }}</td>
-                                        <td>{{ $product->quantity . ' ' . $product->uom->abbreviation  }}</td>
+                                        <td>{{ $product->stock->quantity . ' ' . $product->uom->abbreviation  }}</td>
                                         <td>
                                             <a href="{{ route('products.edit', $product) }}"><i class="fa fa-pencil"></i></a>
                                             <delete-action action="{{ route('api.products.destroy', $product) }}" class="ml-2 text-danger">
