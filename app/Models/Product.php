@@ -72,4 +72,9 @@ class Product extends Model
             'abbreviation' => '-',
         ]);
     }
+    
+    public function stock()
+    {
+        return $this->hasOne(ProductStock::class)->withDefault(['quantity' => 0]);
+    }
 }
