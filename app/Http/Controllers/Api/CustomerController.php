@@ -3,11 +3,19 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Customer;
+use App\Http\Requests\CustomerRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class CustomerController extends Controller
 {
+    public function store(CustomerRequest $request)
+    {
+        $customer = Customer::create($request->all());
+
+        return response()->json($customer);
+    }
+    
     /**
      * Remove the specified resource from storage.
      *
