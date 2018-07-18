@@ -40,6 +40,8 @@ class Customer extends Model
     public static $rules = [
         'name' => 'required',
         'email' => 'required|unique:customers,email',
+        'phone' => 'required',
+        'address' => 'required',
     ];
 
     /**
