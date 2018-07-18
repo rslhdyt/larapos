@@ -58,7 +58,7 @@
                 </ul>
 
                 <div class="card-body">
-                    <div class="form-group">
+                    <div class="form-group" v-show="items.length > 0">
                         <label for="name">Payment Methods *</label>
                         <div class="input-group mb-3">
                             <input v-validate="'numeric'" data-vv-name="amount" type="text" v-model="payment.amount" :class="{'form-control' : true, 'is-invalid' : errors.has('amount')}">

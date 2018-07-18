@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('payment-methods/all', 'PaymentMethodController@all')->name('payment-methods.all');
 
+Route::get('products', 'ProductController@index')->name('products.index');
 Route::get('products/search', 'ProductController@search')->name('products.search');
 Route::delete('products/{product}', 'ProductController@destroy')->name('products.destroy');
 Route::put('products/{product}/restore', 'ProductController@restore')->name('products.restore');
@@ -30,6 +31,7 @@ Route::put('suppliers/{supplier}/restore', 'SupplierController@restore')->name('
 Route::get('customers/search', 'CustomerController@search')->name('customers.search');
 Route::delete('customers/{customer}', 'CustomerController@destroy')->name('customers.destroy');
 Route::put('customers/{customer}/restore', 'CustomerController@restore')->name('customers.restore');
+Route::post('customers', 'CustomerController@store')->name('customers.store');
 
 Route::delete('unit-of-measures/{unit_of_measure}', 'UnitOfMeasureController@destroy')->name('unit-of-measures.destroy');
 Route::put('unit-of-measures/{unit_of_measure}/restore', 'UnitOfMeasureController@restore')->name('unit-of-measures.restore');

@@ -14,9 +14,55 @@
             <a href="#" v-for="(item, $item) in items" :key="$item" :class="activeClass($item)" @mousedown="hit" @mousemove="setActive($item)" v-text="item.name" class="list-group-item list-group-item-action"></a>
         </ul>
 
-        <!-- <div class="input-group-append">
-            <button class="btn btn-primary" type="button">Advance Search</button>
-        </div> -->
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#productModal">Advance Search</button>
+        </div>
+
+        <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="productModalLabel">Search Product</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Barcode</th>
+                                <th>Unit Price</th>
+                                <th>Stock</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(product, key) in products.data" :key="key" v-if="products.data.length">
+                                <td>{{ key + 1 }}</td>
+                                <td>{{ product.name }}</td>
+                                <td>{{ product.barcode }}</td>
+                                <td>{{ product.unit_price | currency }}</td>
+                                <td>{{ product.stock.quantity }} {{ product.uom.abbreviation }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-info" v-on:click="onHit(product)">Select</button>
+                                </td>
+                            </tr>
+                        
+                            <tr class="table-info" v-else>
+                                <td colspan="5" align="center">Products empty or not found.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -54,7 +100,9 @@ export default {
             // Override the default value (`q`) of query parameter name
             // Use a falsy value for RESTful query
             // (optional)
-            queryParamName: 'q'
+            queryParamName: 'q',
+
+            products: [],
         }
     },
     methods: {
@@ -83,7 +131,13 @@ export default {
         }
     },
     mounted() {
+        const that = this
+
         document.getElementById('search-box').focus()
+
+        axios.get('/api/products').then(res => {
+            that.products = res.data
+        });
     }
 }
 </script>

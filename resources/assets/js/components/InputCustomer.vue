@@ -15,18 +15,40 @@
         </ul>
 
         <div class="input-group-append">
-            <button class="btn btn-primary" type="button"><i class="fa fa-plus"></i> Create</button>
+            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#customerModal"><i class="fa fa-plus"></i> Create</button>
+        </div>
+
+        <div class="modal fade" id="customerModal" tabindex="-1" role="dialog" aria-labelledby="customerModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="customerModalLabel">Create New Customer</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form-create-customer ref="formCustomerComponent"></form-create-customer>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="cancelCustomer">Close</button>
+                        <button type="button" class="btn btn-primary" v-on:click="storeCustomer">Save</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 import VueTypeahead from 'vue-typeahead'
+import FormCreateCustomer from './FormCreateCustomer.vue'
 
 Vue.prototype.$http = axios
 
 export default {
     extends: VueTypeahead,
+    components: { FormCreateCustomer },
     data () {
         return {
             // The source url
@@ -83,13 +105,23 @@ export default {
                 'active': this.current === index
             }
         },
-        mounted () {
-            const that = this
-
-            this.$bus.$on('inputCustomerCleared', event => {
-                that.reset()
-            })
+        cancelCustomer () {
+            this.$bus.$emit('clearFormCreateCustomer');
+        },
+        storeCustomer () {
+            this.$bus.$emit('saveFormCreateCustomer');
         }
+    },
+    mounted () {
+        this.$bus.$on('customerCreated', event => {
+            this.onHit(event.customer)
+
+            $('#customerModal').modal('hide');
+        })
+
+        this.$bus.$on('inputCustomerCleared', event => {
+            this.reset()
+        })
     }
 }
 </script>
