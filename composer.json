@@ -65,9 +65,5 @@
         "sort-packages": true,
         "optimize-autoloader": true
     },
-    "repositories": [{
-        "type": "path",
-        "url": "packages/rslhdyt-larasettings"
-    }],
     "minimum-stability": "dev"
 }
