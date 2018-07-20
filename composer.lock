@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "743c5434e70fea5fffc173899e72371a",
+    "content-hash": "d6efb1d50c9fad31a46f3c717a75e279",
     "packages": [
         {
             "name": "davejamesmiller/laravel-breadcrumbs",
@@ -2366,6 +2366,39 @@
                 "uuid"
             ],
             "time": "2017-09-22T20:46:04+00:00"
+        },
+        {
+            "name": "rslhdyt/larasettings",
+            "version": "dev-development",
+            "dist": {
+                "type": "path",
+                "url": "packages/rslhdyt-larasettings",
+                "reference": "3d31364a97e51302cdb6445e11e37773857e4284",
+                "shasum": null
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rslhdyt\\LaraSettings\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rslhdyt\\LaraSettings\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Risal Hidayat",
+                    "email": "risalhidayat88@gmail.com"
+                }
+            ],
+            "description": "Manage settings package for laravel framework"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -5483,8 +5516,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "rslhdyt/larasettings": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

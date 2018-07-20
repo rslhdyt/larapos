@@ -39,13 +39,18 @@
                             <div class="invalid-feedback">{{ $errors->first('uom_id') }}</div>
                         </div>
                         <div class="form-group">
-                            <label for="price">Price *</label>
-                            <input name="price" value="{{ old('price', $product->price) }}" type="text" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" id="price" placeholder="Product price">
-                            <div class="invalid-feedback">{{ $errors->first('price') }}</div>
+                            <label for="cost_price">Cost Price *</label>
+                            <input name="cost_price" value="{{ old('cost_price', $product->cost_price) }}" type="text" class="form-control {{ $errors->has('cost_price') ? 'is-invalid' : '' }}" id="cost-price" placeholder="Product cost price">
+                            <div class="invalid-feedback">{{ $errors->first('cost_price') }}</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="unit_price">Unit Price *</label>
+                            <input name="unit_price" value="{{ old('unit_price', $product->unit_price) }}" type="text" class="form-control {{ $errors->has('unit_price') ? 'is-invalid' : '' }}" id="unit-price" placeholder="Product unit price">
+                            <div class="invalid-feedback">{{ $errors->first('unit_price') }}</div>
                         </div>
                         <div class="form-group">
                             <label for="minimal_stock">Minimal Stock *</label>
-                            <input name="minimal_stock" value="{{ old('minimal_stock', $product->minimal_stock) }}" type="text" class="form-control {{ $errors->has('minimal_stock') ? 'is-invalid' : '' }}" id="minimal_stock" placeholder="Initial product minimal_stock">
+                            <input name="minimal_stock" value="{{ old('minimal_stock', $product->minimal_stock) }}" type="text" class="form-control {{ $errors->has('minimal_stock') ? 'is-invalid' : '' }}" id="minimal_stock" placeholder="Product minimum stock">
                             <div class="invalid-feedback">{{ $errors->first('minimal_stock') }}</div>
                         </div>
 

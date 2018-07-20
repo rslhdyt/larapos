@@ -46861,7 +46861,7 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-dark btn-block",
-                  attrs: { type: "button" },
+                  attrs: { type: "button", disabled: !_vm.payment.amount },
                   on: { click: _vm.addPayment }
                 },
                 [_vm._v("Add Payment")]

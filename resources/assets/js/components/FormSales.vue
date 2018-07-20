@@ -69,7 +69,7 @@
                             <div class="invalid-feedback">{{ errors.first('paymentMethod') }}</div>
                         </div>
 
-                        <button class="btn btn-dark btn-block" type="button" v-on:click="addPayment">Add Payment</button>
+                        <button class="btn btn-dark btn-block" type="button" v-on:click="addPayment" :disabled="!payment.amount">Add Payment</button>
                     </div>
 
                     <div class="form-group">
@@ -99,7 +99,8 @@ export default {
     },
     data () {
         return {
-            payment: {},
+            payment: {
+            },
             form: {
                 customer_id: null
             },

@@ -50,7 +50,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('adjustments/export', 'AdjustmentController@export')->name('adjustments.export');
     Route::resource('adjustments', 'AdjustmentController');
 
-    Route::get('settings', 'ProductController@index')->name('settings.edit');
-
     Route::get('product-stocks', 'ProductStockController@index')->name('product-stocks.index');
 });

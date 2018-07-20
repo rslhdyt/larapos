@@ -14,6 +14,7 @@
         "laravel/scout": "^4.0",
         "laravel/tinker": "~1.0",
         "maatwebsite/excel": "^3.0",
+        "rslhdyt/larasettings": "dev-master",
         "teamtnt/laravel-scout-tntsearch-driver": "^3.0"
     },
     "require-dev": {
@@ -63,5 +64,10 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true
-    }
+    },
+    "repositories": [{
+        "type": "path",
+        "url": "packages/rslhdyt-larasettings"
+    }],
+    "minimum-stability": "dev"
 }
