@@ -8,4 +8,6 @@ return [
     'restrict' => [
         'database.*'
     ],
+
+    'middleware' => 'web|auth',
 ];
