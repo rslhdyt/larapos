@@ -24,6 +24,7 @@ host('sandbox.web.id')
     ->user('app')
     ->forwardAgent()
     ->stage('sandbox')
+    ->set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader')
     ->set('deploy_path', '~/htdocs/{{application}}');
     
 // Tasks

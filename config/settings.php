@@ -9,5 +9,5 @@ return [
         'database.*'
     ],
 
-    'middleware' => 'web|auth',
+    'middleware' => ['web', 'auth'],
 ];
