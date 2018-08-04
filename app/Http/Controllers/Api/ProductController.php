@@ -15,7 +15,13 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = ($q = $request->get('q')) ? Product::search($q) : Product::query();
+        $products = Product::query();
+        
+        if ($q = $request->get('q')) {
+            $productIds = Product::search($q)->raw()['ids'];
+            $products->whereIn('id', $productIds);
+        }
+
         $products = $products->with(['uom', 'stock'])->paginate();
 
         return response()->json($products);
@@ -58,7 +64,13 @@ class ProductController extends Controller
      */
     public function search(Request $request)
     {
-        $products = ($q = $request->get('q')) ? Product::search($q) : Product::query();
+        $products = Product::query();
+        
+        if ($q = $request->get('q')) {
+            $productIds = Product::search($q)->raw()['ids'];
+            $products->whereIn('id', $productIds);
+        }
+
         $products = $products->get();
 
         return response()->json($products);
